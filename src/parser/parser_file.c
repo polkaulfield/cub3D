@@ -29,7 +29,7 @@ static void	read_all_file(char *line, t_map *map)
 	if (!line)
 		terminate_error("Error: Map not found");
 	line = ft_strdup(line);
-	while (line)
+	while (line && *line)
 	{
 		add_galloc(line);
 		line = add_galloc(ft_strtrim(line, "\n"));
