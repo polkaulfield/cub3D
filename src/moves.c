@@ -6,17 +6,18 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:55:44 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/20 23:42:23 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/23 20:03:57 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/moves.h"
 #include "../includes/cub3d.h"
+#include "../includes/drawing.h"
 
 int		is_grid_collision(int x, int y, t_map *map)
 {
-	if (x <= map->map_width && y >= 1 &&
-		x >= 1 && y <= map->map_width)
+	if (x <= map->width && y >= 1 &&
+		x >= 1 && y <= map->width)
 	{
 		if (map->grid[x][y] == '1')
 			return (1);
@@ -32,7 +33,7 @@ int		is_collision(double x, double y, t_params *params)
 	int	cell_ceil[2];
 	double	cell_size;
 
-	cell_size = params->mlx->width / params->map->map_width;
+	cell_size = params->mlx->width / params->map->width;
 	cell_floor[0] = (int)floor(x / cell_size);
 	cell_floor[1] = (int)floor(y / cell_size);
 	cell_ceil[0] = (int)ceil(x / cell_size);
@@ -52,8 +53,8 @@ int		is_collision(double x, double y, t_params *params)
 	int cell_round[2];
 	double	cell_size;
 
-	cell_size = params->mlx->width / params->map->map_width;
-	printf("map width: %d map height: %d\n", params->map->map_width, params->map->map_height);
+	cell_size = params->mlx->width / params->map->width;
+	printf("map width: %d map height: %d\n", params->map->width, params->map->height);
 	cell_round[0] = (int)round(x / cell_size);
 	cell_round[1] = (int)round(y / cell_size);
 	printf("Curr cell: x:%d y:%d\n", cell_round[0], cell_round[1]);
@@ -65,12 +66,17 @@ int		is_collision(double x, double y, t_params *params)
 
 void	move_player(int x, int y, t_player *player, t_params *params)
 {
+	t_coords	pos;
+	printf("CHECKING COLLISION");
+
 	if (is_collision(x, y, params))
 		return ;
-	player->x = x;
-	player->y = y;
-	if (player->img)
-		mlx_delete_image(params->mlx, player->img);
-	player->img = init_simple_image(params->tile_size, params->tile_size, player->color, params);
-	add_image_mlx(x, y, player->img, params);
+	pos.x = player->x;
+	pos.y = player->y;
+
+	draw_grid(params);
+	printf("player size: %d\n", params->tile_size);
+	draw_square(params->img, pos, params->tile_size, get_rgba(255, 0, 255, 255));
+
+	add_image_mlx(0, 0, params->img, params);
 }

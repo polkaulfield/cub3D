@@ -22,8 +22,8 @@ typedef struct s_map
 	int		x_player;
 	int		y_player;
 	char	**grid;
-	int		map_height;
-	int		map_width;
+	int		height;
+	int		width;
 	char	*texture[5];
 	int		floor[3];
 	int		ceiling[3];
@@ -66,8 +66,8 @@ void	texture_parser(char *line, t_map *map);
 void	check_maps_args(t_map *map);
 
 //parser_utils.c
-int		calc_map_height(char **grid);
-int		calc_map_width(char **grid);
+int		calc_height(char **grid);
+int		calc_width(char **grid);
 int 	char_in_set(char c, char *set);
 char	**dynamic_arr(char **arr, char *line);
 

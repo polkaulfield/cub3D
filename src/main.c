@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	map = parser(argv[1]);
 	params = init_params(mlx, map);
 	draw_grid(params);
-	move_player(params->player->x, params->player->y, params->player, params);
+	//move_player(params->player->x, params->player->y, params->player, params);
 	mlx_loop_hook(mlx, ft_hook, params);
 	mlx_loop(mlx);
 	free(params->player);

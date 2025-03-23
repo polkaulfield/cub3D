@@ -1,6 +1,6 @@
 #include "../../includes/parser.h"
 
-int	calc_map_height(char **grid)
+int	calc_height(char **grid)
 {
 	int	y;
 	int	temp_y;
@@ -18,7 +18,7 @@ int	calc_map_height(char **grid)
 	return (y);
 }
 
-int	calc_map_width(char **grid)
+int	calc_width(char **grid)
 {
 	int	y;
 	int	x;

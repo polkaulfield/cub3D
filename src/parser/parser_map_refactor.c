@@ -9,7 +9,7 @@ static	void	fill_new_map_extend(t_map *map,
 		y_x[X]++;
 		n_y_x[X]++;
 	}
-	while (n_y_x[X] < map->map_width + 2)
+	while (n_y_x[X] < map->width + 2)
 		new_grid[n_y_x[Y]][n_y_x[X]++] = ' ';
 }
 
@@ -21,7 +21,7 @@ static	char	**fill_new_map(t_map *map, char **new_grid)
 	y_x[Y] = 0;
 	n_y_x[Y] = 0;
 	new_grid[n_y_x[Y]] = ft_memset(new_grid[n_y_x[0]],
-			' ', map->map_width + 2);
+			' ', map->width + 2);
 	n_y_x[Y]++;
 	while (map->grid[y_x[Y]] && (check_line(map->grid[y_x[Y]], NULL)
 			|| map->grid[y_x[Y]][0] != '\0'))
@@ -35,7 +35,7 @@ static	char	**fill_new_map(t_map *map, char **new_grid)
 		n_y_x[Y]++;
 	}
 	new_grid[n_y_x[Y]] = ft_memset(new_grid[n_y_x[Y]],
-			' ', map->map_width + 2);
+			' ', map->width + 2);
 	gfree_arr((void **)map->grid);
 	return (new_grid);
 }
@@ -47,16 +47,16 @@ void	map_refactor(t_map *map)
 
 	if (!map->grid)
 		terminate_error("Error: Map not found");
-	map->map_height = calc_map_height(map->grid);
-	map->map_width = calc_map_width(map->grid);
-	if (map->map_width < 3 && map->map_height < 3)
+	map->height = calc_height(map->grid);
+	map->width = calc_width(map->grid);
+	if (map->width < 3 && map->height < 3)
 		terminate_error("Error: Map very little");
-	new_grid = galloc((map->map_height + 3) * sizeof(char *));
+	new_grid = galloc((map->height + 3) * sizeof(char *));
 	y = 0;
-	while (map->map_height + 2 > y)
+	while (map->height + 2 > y)
 	{
-		new_grid[y] = galloc((map->map_width + 3) * sizeof(char));
-		new_grid[y][map->map_width + 2] = '\0';
+		new_grid[y] = galloc((map->width + 3) * sizeof(char));
+		new_grid[y][map->width + 2] = '\0';
 		y++;
 	}
 	new_grid[y] = NULL;

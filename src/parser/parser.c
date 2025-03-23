@@ -54,9 +54,9 @@ t_map	*parser(char *file)
 	map_parser(map);
 	check_player(map);
 	grid = map_replace(map->grid);
-	map->map_height = calc_map_height(grid);
-	map->map_width = calc_map_width(grid);
-	map->grid = make_xy_grid(grid, map->map_width, map->map_height);
+	map->height = calc_height(grid);
+	map->width = calc_width(grid);
+	map->grid = make_xy_grid(grid, map->width, map->height);
 	//gfree_arr((void **)grid);
 	return (map);
 }

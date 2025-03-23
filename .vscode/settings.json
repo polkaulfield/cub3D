@@ -1,0 +1,13 @@
+{
+	"files.associations": {
+		"drawing.h": "c",
+		"images.h": "c",
+		"params.h": "c",
+		"cub3d.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"ranges": "c",
+		"utility": "c"
+	}
+}

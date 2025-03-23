@@ -12,8 +12,8 @@ t_map	*init_map(char *file)
 	map->y_player = -1;
 	map->x_player = -1;
 	map->grid = NULL;
-	map->map_height = 0;
-	map->map_width = 0;
+	map->height = 0;
+	map->width = 0;
 	i = -1;
 	while (++i < 5)
 		map->texture[i] = NULL;

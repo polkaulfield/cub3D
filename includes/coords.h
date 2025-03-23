@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   params.h                                           :+:      :+:    :+:   */
+/*   coords.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 21:33:38 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/23 18:30:30 by pohernan         ###   ########.fr       */
+/*   Created: 2025/03/23 19:50:40 by pohernan          #+#    #+#             */
+/*   Updated: 2025/03/23 19:50:49 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARAMS_H
-# define PARAMS_H
+#ifndef COORDS_H
+# define COORDS_H
+
 # include "cub3d.h"
-# include "parser.h"
-# include "player.h"
 
-typedef struct s_params
+typedef struct s_coords
 {
-	mlx_t	*mlx;
-	mlx_image_t	*img;
-	int		tile_size;
-	t_map	*map;
-	double	fov;
-	double	half_fov;
-	t_player *player;
-	int		casted_rays;
-}	t_params;
-
-t_params *init_params(mlx_t *mlx, t_map *map);
+	int	x;
+	int	y;
+}	t_coords;
 #endif
