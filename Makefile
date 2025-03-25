@@ -14,6 +14,7 @@ SRCS	:= ./src/main.c \
 			./src/errors.c \
 			./src/images.c \
 			./src/moves.c \
+			./src/keys.c \
 			./src/parser/init_map.c \
 			./src/parser/parser.c \
 			./src/parser/parser_checkers.c \

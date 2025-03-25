@@ -27,7 +27,8 @@ int		is_grid_collision(int x, int y, t_map *map)
 	return (0);
 }
 
-int		is_collision(double x, double y, t_params *params)
+/*
+int		is_collision_borders(double x, double y, t_params *params)
 {
 	int	cell_floor[2];
 	int	cell_ceil[2];
@@ -47,7 +48,8 @@ int		is_collision(double x, double y, t_params *params)
 		return (1);
 	return (0);
 }
-/*
+*/
+
 int		is_collision(double x, double y, t_params *params)
 {
 	int cell_round[2];
@@ -62,21 +64,18 @@ int		is_collision(double x, double y, t_params *params)
 		return (1);
 	return (0);
 }
-*/
 
-void	move_player(int x, int y, t_player *player, t_params *params)
+void	move_player(int x_offset, int y_offset, t_player *player, t_params *params)
 {
 	t_coords	pos;
-	printf("CHECKING COLLISION");
 
-	if (is_collision(x, y, params))
+	pos.x = player->x + x_offset;
+	pos.y = player->y + y_offset;
+	if (is_collision(pos.x, pos.y, params))
 		return ;
-	pos.x = player->x;
-	pos.y = player->y;
-
+	player->x = pos.x;
+	player->y = pos.y;
 	draw_grid(params);
-	printf("player size: %d\n", params->tile_size);
 	draw_square(params->img, pos, params->tile_size, get_rgba(255, 0, 255, 255));
-
 	add_image_mlx(0, 0, params->img, params);
 }
