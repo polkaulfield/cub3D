@@ -2,15 +2,17 @@
 
 void	*add_galloc_arr(void **mem)
 {
-	void	**temp_mem;
+	int		i;
 
-	temp_mem = mem;
-	add_galloc(temp_mem);
-	while (*temp_mem)
+	i = -1;
+
+	while (mem[++i])
 	{
-		add_galloc(*temp_mem);
-		temp_mem++;
+		printf("%p\n", mem[i]);
+		add_galloc(mem[i]);
 	}
+	printf("%p\n", mem);
+	add_galloc(mem);
 	return (mem);
 }
 

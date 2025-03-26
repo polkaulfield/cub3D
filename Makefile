@@ -1,6 +1,6 @@
 CC		:= gcc
 NAME	:= cub3d
-CFLAGS	:= -g -Wextra -Wall -Werror -Ofast -ffast-math -march=native
+CFLAGS	:= -g -Wextra -Wall -Werror -Ofast -ffast-math -march=native -fsanitize=address
 LIBMLX	:= ./libs/MLX42
 LIBFT	:= ./libs/libft
 
@@ -44,7 +44,7 @@ libft:
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
 $(NAME): libft $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)

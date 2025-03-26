@@ -13,12 +13,13 @@
 #include "../includes/cub3d.h"
 #include "../includes/player.h"
 #include "../includes/color.h"
+#include "../includes/galloc.h"
 
 t_player	*init_player(void)
 {
 	t_player	*player;
 
-	player = malloc(sizeof(t_player));
+	player = galloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
 	player->img = NULL;

@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #include "../includes/errors.h"
+#include "../includes/galloc.h"
 
 void	error(void)
 {
 	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
+	terminate(EXIT_FAILURE);
 }

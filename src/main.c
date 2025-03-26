@@ -45,10 +45,8 @@ int	main(int argc, char **argv)
 	move_player(0, 0, params->player, params);
 	mlx_loop_hook(mlx, keys_hook, params);
 	mlx_loop(mlx);
-	free(params->player);
-	free(params->map->grid);
-	free(params->map);
-	free(params);
+
 	mlx_terminate(mlx);
+	terminate(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

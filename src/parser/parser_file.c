@@ -29,13 +29,14 @@ static void	read_all_file(char *line, t_map *map)
 	if (!line)
 		terminate_error("Error: Map not found");
 	line = ft_strdup(line);
+	add_galloc(line);
 	while (line && *line)
 	{
-		add_galloc(line);
 		line = add_galloc(ft_strtrim(line, "\n"));
 		map->grid = dynamic_arr(map->grid, line);
 		gfree(line);
 		line = get_next_line(map->fd_file);
+		add_galloc(line);
 	}
 	close(map->fd_file);
 }

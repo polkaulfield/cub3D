@@ -17,7 +17,7 @@ t_params	*init_params(mlx_t *mlx, t_map *map)
 {
 	t_params	*params;
 
-	params = malloc(sizeof(t_params));
+	params = galloc(sizeof(t_params));
 	if (!params)
 		return (NULL);
 	params->mlx = mlx;
@@ -26,7 +26,7 @@ t_params	*init_params(mlx_t *mlx, t_map *map)
 	params->map = map;
 	printf ("map width: %d map height %d\n", map->width, map->height);
 	//TODO IMPLEMENT RATIO 1.8 or so
-	if (map->height * 2 < map->width)		
+	if (map->height * 2 < map->width)
 		params->tile_size = (mlx->width / 4) / map->width;
 	else
 		params->tile_size = (mlx->height / 4) / map->height;

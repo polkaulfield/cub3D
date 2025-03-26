@@ -6,12 +6,12 @@ char	**make_xy_grid(char **grid, int width, int height)
 	int	y;
 	char	**new_grid;
 
-	new_grid = malloc(sizeof(char *) * (width + 1));
+	new_grid = galloc(sizeof(char *) * (width + 1));
 	x = 0;
 	while (x < width)
 	{
 		y = 0;
-		new_grid[x] = malloc((sizeof(char) * height) + 1);
+		new_grid[x] = galloc((sizeof(char) * height) + 1);
 		while (y < height)
 		{
 			new_grid[x][y] = grid[y][x];
@@ -50,7 +50,6 @@ t_map	*parser(char *file)
 	map = init_map(file);
 	open_file(map);
 	read_file(map);
-	map_refactor(map);
 	map_parser(map);
 	check_player(map);
 	grid = map_replace(map->grid);
