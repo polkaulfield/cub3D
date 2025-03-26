@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 00:07:18 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/22 23:54:11 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:20:55 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	*colorset(int *s, int c, size_t n)
 		*ptr++ = c;
 	return (s);
 }
-
 
 int	get_rgba(int r, int g, int b, int a)
 {

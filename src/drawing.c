@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:08:25 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/26 17:54:18 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:57:33 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,34 @@ void	draw_square(mlx_image_t *img, t_coords pos, int side, int color)
 		y = 0;
 		while (y < side)
 		{
-			mlx_put_pixel(img, pos.x + x, pos.y + y, color);
+			if (pos.x + x < (int)img->width && pos.y < (int)img->height)
+				mlx_put_pixel(img, pos.x + x, pos.y + y, color);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	draw_grid(t_params *params)
+mlx_image_t	*make_minimap_image(t_params *params)
 {
-	t_coords	size;
-	t_coords	coords;
-	t_coords	pos;
-	mlx_image_t	*new_img;
+	int			width;
+	int			height;
+	mlx_image_t	*img;
 
+	width = params->mlx->width / 4;
+	height = params->mlx->height / 4;
+	img = init_simple_image(width, height, get_rgba(255, 255, 255, 0), params);
+	return (img);
+}
+
+void	draw_minimap(t_params *params)
+{
+	t_coords	pos;
+	t_coords	coords;
+	mlx_image_t	*minimap;
+
+	minimap =  make_minimap_image(params);
 	coords.y = 0;
-	size.x = params->mlx->width;
-	size.y =params->mlx->height;
-	new_img = new_image(params, size);
 	while (coords.y < params->map->height)
 	{
 		coords.x = 0;
@@ -53,9 +63,9 @@ void	draw_grid(t_params *params)
 			pos.x = params->tile_size * coords.x;
 			pos.y = params->tile_size * coords.y;
 			if (params->map->grid[coords.x][coords.y] == '1')
-				draw_square(new_img, pos, params->tile_size, get_rgba(255, 0, 0, 255));
+				draw_square(minimap, pos, params->tile_size, get_rgba(255, 0, 0, 255));
 			else
-				draw_square(new_img, pos, params->tile_size, get_rgba(0, 255, 0, 0));
+				draw_square(minimap, pos, params->tile_size, get_rgba(255, 255, 0, 0));
 			coords.x++;
 		}
 		coords.y++;
@@ -63,7 +73,7 @@ void	draw_grid(t_params *params)
 	}
 	if (params->img)
 		mlx_delete_image(params->mlx, params->img);
-	params->img = new_img;
+	params->img = minimap;
 }
 /*
 void	raycaster(t_params *params)

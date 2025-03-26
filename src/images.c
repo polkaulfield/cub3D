@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:04:21 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/23 19:43:49 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:43:37 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 mlx_image_t	*init_simple_image(int width, int height, int color, t_params *params)
 {
 	mlx_image_t*	img;
-	(void)color;
 
 	img = mlx_new_image(params->mlx, width, height);
 	if (!img)
@@ -27,11 +26,13 @@ mlx_image_t	*init_simple_image(int width, int height, int color, t_params *param
 	return (img);
 }
 
-mlx_image_t	*new_image(t_params *params, t_coords size)
+mlx_image_t	*new_image(t_params *params, int width, int height)
 {
 	mlx_image_t	*img;
 
-	img = mlx_new_image(params->mlx, size.x, size.y);
+	img = mlx_new_image(params->mlx, width, height);
+	if (!img)
+		error();
 	return (img);
 }
 

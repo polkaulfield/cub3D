@@ -12,7 +12,7 @@
 #include "../includes/moves.h"
 #include "../includes/keys.h"
 
-#define WIDTH 1080
+#define WIDTH 1920
 #define HEIGHT 1080
 
 // -----------------------------------------------------------------------------
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	mlx_t*		mlx;
 	t_map		*map;
 	t_params	*params;
+	//mlx_image_t	*minimap;
 
 	if (argc != 2)
 	{
@@ -37,7 +38,10 @@ int	main(int argc, char **argv)
 	init_galloc();
 	map = parser(argv[1]);
 	params = init_params(mlx, map);
-	draw_grid(params);
+	//minimap = make_minimap_image(params);
+
+	draw_minimap(params);
+	add_image_mlx(0, 0, params->img, params);
 	move_player(0, 0, params->player, params);
 	mlx_loop_hook(mlx, keys_hook, params);
 	mlx_loop(mlx);

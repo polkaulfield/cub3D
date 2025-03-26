@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:55:44 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/26 17:46:28 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:42:05 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ int		is_collision_borders(double x, double y, t_params *params)
 int		is_collision(double x, double y, t_params *params)
 {
 	int cell_round[2];
-	double	cell_size;
 
-	cell_size = params->mlx->width / params->map->width;
 	printf("map width: %d map height: %d\n", params->map->width, params->map->height);
-	cell_round[0] = (int)round(x / cell_size);
-	cell_round[1] = (int)round(y / cell_size);
+	cell_round[0] = (int)round(x / params->tile_size);
+	cell_round[1] = (int)round(y / params->tile_size);
 	printf("Curr cell: x:%d y:%d\n", cell_round[0], cell_round[1]);
 	if (is_grid_collision(cell_round[0], cell_round[1], params->map))
 		return (1);
@@ -76,7 +74,7 @@ void	move_player(int x_offset, int y_offset, t_player *player, t_params *params)
 		return ;
 	player->x = pos.x;
 	player->y = pos.y;
-	draw_grid(params);
+	draw_minimap(params);
 	draw_square(params->img, pos, params->tile_size, player->color);
 	add_image_mlx(0, 0, params->img, params);
 }
