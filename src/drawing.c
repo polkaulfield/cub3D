@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:08:25 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/23 19:59:30 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/26 17:44:29 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ void	draw_square(mlx_image_t *img, t_coords pos, int side, int color)
 
 void	draw_grid(t_params *params)
 {
-	int			side;
 	t_coords	size;
 	t_coords	coords;
 	t_coords	pos;
 	mlx_image_t	*new_img;
 
 	coords.y = 0;
-	side = params->mlx->width / params->map->width;
 	size.x = params->mlx->width;
 	size.y =params->mlx->height;
 	new_img = new_image(params, size);
@@ -52,12 +50,12 @@ void	draw_grid(t_params *params)
 		while (coords.x < params->map->width)
 		{
 			printf("%c ", params->map->grid[coords.x][coords.y]);
-			pos.x = side * coords.x;
-			pos.y = side * coords.y;
+			pos.x = params->tile_size * coords.x;
+			pos.y = params->tile_size * coords.y;
 			if (params->map->grid[coords.x][coords.y] == '1')
-				draw_square(new_img, pos, side, get_rgba(255, 0, 0, 255));
+				draw_square(new_img, pos, params->tile_size, get_rgba(255, 0, 0, 255));
 			else
-				draw_square(new_img, pos, side, get_rgba(0, 255, 0, 0));
+				draw_square(new_img, pos, params->tile_size, get_rgba(0, 255, 0, 0));
 			coords.x++;
 		}
 		coords.y++;

@@ -12,8 +12,8 @@
 #include "../includes/moves.h"
 #include "../includes/keys.h"
 
-#define WIDTH 512
-#define HEIGHT 512
+#define WIDTH 1080
+#define HEIGHT 1080
 
 // -----------------------------------------------------------------------------
 

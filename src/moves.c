@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:55:44 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/23 20:03:57 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/26 17:46:28 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	move_player(int x_offset, int y_offset, t_player *player, t_params *params)
 {
 	t_coords	pos;
 
+	printf("Player: x: %f y: %f\n", params->player->x , params->player->y);
 	pos.x = player->x + x_offset;
 	pos.y = player->y + y_offset;
 	if (is_collision(pos.x, pos.y, params))
@@ -76,6 +77,6 @@ void	move_player(int x_offset, int y_offset, t_player *player, t_params *params)
 	player->x = pos.x;
 	player->y = pos.y;
 	draw_grid(params);
-	draw_square(params->img, pos, params->tile_size, get_rgba(255, 0, 255, 255));
+	draw_square(params->img, pos, params->tile_size, player->color);
 	add_image_mlx(0, 0, params->img, params);
 }

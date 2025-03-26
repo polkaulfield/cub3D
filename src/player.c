@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:39:22 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/23 19:55:31 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/26 17:46:03 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_player	*init_player(void)
 	player->x = 400;
 	player->y = 400;
 	player->step = 5;
-	player->color = get_rgba(255, 0 ,255, 255);
+	player->color = get_rgba(0, 255 ,0, 255);
 	player->player_angle = MPI;
 	return (player);
 }
