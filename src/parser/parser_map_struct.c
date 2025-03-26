@@ -34,7 +34,7 @@ void	texture_parser(char *line, t_map *map)
 	int	i;
 	int	fd;
 
-	if (ft_strncmp(ft_strrchr(line, '.'), ".png", 5) != 0)
+	if (ft_strncmp(ft_strrchr(line, '.'), ".xpm", 5) != 0)
 		terminate_error("Error: Wrong file extension");
 	i = 2;
 	while (line[i] == ' ')
