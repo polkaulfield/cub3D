@@ -19,8 +19,8 @@ typedef struct s_map
 	char	*file_name;
 	int		fd_file;
 	char	player_direction;
-	int		x_player;
-	int		y_player;
+	double	x_player;
+	double	y_player;
 	char	**grid;
 	int		height;
 	int		width;

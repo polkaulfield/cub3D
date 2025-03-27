@@ -16,8 +16,8 @@
 
 int		is_grid_collision(int x, int y, t_map *map)
 {
-	if (x <= map->width && y >= 1 &&
-		x >= 1 && y <= map->width)
+	if (y >= 1 &&
+		x >= 1)
 	{
 		if (map->grid[x][y] == '1')
 			return (1);

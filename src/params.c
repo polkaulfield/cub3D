@@ -33,8 +33,6 @@ t_params	*init_params(mlx_t *mlx, t_map *map)
 	params->player = init_player();
 	params->player->x = params->tile_size * map->x_player;
 	params->player->y = params->tile_size * map->y_player;
-	printf("Player: x: %d y: %d\n", map->x_player, map->y_player);
-	printf("Player: x: %f y: %f\n", params->player->x , params->player->y);
 	params->fov = MPI / 3;
 	params->half_fov = params->fov / 2;
 	params->casted_rays = 30;
