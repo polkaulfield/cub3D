@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   drawing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 00:06:26 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/20 21:39:15 by pohernan         ###   ########.fr       */
+/*   Created: 2025/03/18 17:06:49 by pohernan          #+#    #+#             */
+/*   Updated: 2025/03/26 19:42:15 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
-# include "cub3d.h"
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
+# include "../includes/cub3d.h"
+# include "../includes/params.h"
+# include "../includes/color.h"
+# include "../includes/coords.h"
 
-int		get_rgba(int r, int g, int b, int a);
-int     encode_rgb(uint8_t red, uint8_t green, uint8_t blue);
-void	*colorset(void *s, int c, size_t n);
+void	raycaster(t_params *params);
 #endif

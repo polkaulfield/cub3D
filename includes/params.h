@@ -26,6 +26,7 @@ typedef struct s_params
 	double	half_fov;
 	t_player *player;
 	int		casted_rays;
+	double	max_depth;
 }	t_params;
 
 t_params *init_params(mlx_t *mlx, t_map *map);

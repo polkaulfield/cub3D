@@ -36,5 +36,6 @@ t_params	*init_params(mlx_t *mlx, t_map *map)
 	params->fov = MPI / 3;
 	params->half_fov = params->fov / 2;
 	params->casted_rays = 30;
+	params->max_depth = 50;
 	return (params);
 }

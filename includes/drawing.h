@@ -19,5 +19,8 @@
 
 void	draw_minimap(t_params *params);
 void	draw_square(mlx_image_t *img, t_coords pos, int side, int color);
+void	draw_rectangle(mlx_image_t *img, t_coords pos, int width, int height, int color);
+void	draw_line(mlx_image_t *img, t_coords pos_start, t_coords pos_end, int width, int color);
+
 mlx_image_t	*make_minimap_image(t_params *params);
 #endif

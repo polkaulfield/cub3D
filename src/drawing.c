@@ -34,6 +34,31 @@ void	draw_square(mlx_image_t *img, t_coords pos, int side, int color)
 	}
 }
 
+void	draw_rectangle(mlx_image_t *img, t_coords pos, int width, int height, int color)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < width)
+	{
+		y = 0;
+		while (y < height)
+		{
+			if (pos.x + x < (int)img->width && pos.y < (int)img->height)
+				mlx_put_pixel(img, pos.x + x, pos.y + y, color);
+			y++;
+		}
+		x++;
+	}
+}
+
+/*
+void	draw_line(mlx_image_t *img, t_coords pos_start, t_coords pos_end, int width, int color);
+{
+
+}
+*/
 mlx_image_t	*make_minimap_image(t_params *params)
 {
 	int			width;
@@ -42,7 +67,7 @@ mlx_image_t	*make_minimap_image(t_params *params)
 
 	width = params->mlx->width / 4;
 	height = params->mlx->height / 4;
-	img = init_simple_image(width, height, get_rgba(255, 255, 255, 0), params);
+	img = init_simple_image(width, height, get_rgba(0, 255, 0, 255), params);
 	return (img);
 }
 
@@ -65,7 +90,7 @@ void	draw_minimap(t_params *params)
 			if (params->map->grid[coords.x][coords.y] == '1')
 				draw_square(minimap, pos, params->tile_size, get_rgba(255, 0, 0, 255));
 			else
-				draw_square(minimap, pos, params->tile_size, get_rgba(255, 255, 0, 0));
+				draw_square(minimap, pos, params->tile_size, get_rgba(255, 255, 255, 255));
 			coords.x++;
 		}
 		coords.y++;
