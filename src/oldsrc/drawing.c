@@ -15,6 +15,58 @@
 #include "../includes/parser.h"
 #include "../includes/coords.h"
 
+t_coords get_pixel_pos_x(t_coords p1, t_coords p2, int y)
+{
+	t_coords p3;
+
+	p3.y = y;
+	p3.x = (y - p1.y) * (p2.x - p1.x) / (p2.y - p1.y) + p1.x;
+	return (p3);
+}
+
+t_coords get_pixel_pos_y(t_coords p1, t_coords p2, int x)
+{
+	t_coords p3;
+
+	p3.x = x;
+	p3.y = (x - p1.x) * (p2.y - p1.y) / (p2.x - p1.x) + p1.y;
+	return (p3);
+}
+
+void	draw_line(mlx_image_t *img, t_coords p1, t_coords p2, int color)
+{
+	t_coords pixel_pos;
+	int		x;
+	int		y;
+	int		dir;
+
+	dir = 1;
+	if (abs(p2.x - p1.x) > abs(p2.y - p1.y))
+	{
+		if (p2.x - p1.x < 0)
+			dir = -1;
+		x = p1.x;
+		while ((dir == 1 && x < p2.x) || (dir == -1 && x > p2.x))
+		{
+			pixel_pos = get_pixel_pos_y(p1, p2, x);
+			mlx_put_pixel(img, pixel_pos.x, pixel_pos.y, color); 
+			x += dir;
+		}
+	}
+	else
+	{
+		if (p2.y - p1.y < 0)
+			dir = -1;
+		y = p1.y;
+		while ((dir == 1 && y < p2.y) || (dir == -1 && y > p2.y))
+		{
+			pixel_pos = get_pixel_pos_x(p1, p2, y);
+			mlx_put_pixel(img, pixel_pos.x, pixel_pos.y, color); 
+			y += dir;
+		}
+	}
+}
+
 void	draw_square(mlx_image_t *img, t_coords pos, int side, int color)
 {
 	int	x;
@@ -52,10 +104,13 @@ void	draw_rectangle(mlx_image_t *img, t_coords pos, int width, int height, int c
 		x++;
 	}
 }
-
 /*
-void	draw_line(mlx_image_t *img, t_coords pos_start, t_coords pos_end, int width, int color);
+void	draw_verical_line(mlx_image_t *img, t_coords pos_start, int len, int width, int color)
 {
+	int	y;
+	int	y_end;
+
+	draw_rectangle(img, pos_start, width, len, color);
 
 }
 */
@@ -88,7 +143,7 @@ void	draw_minimap(t_params *params)
 			pos.x = params->tile_size * coords.x;
 			pos.y = params->tile_size * coords.y;
 			if (params->map->grid[coords.x][coords.y] == '1')
-				draw_square(minimap, pos, params->tile_size, get_rgba(255, 0, 0, 255));
+				draw_square(minimap, pos, params->tile_size, get_rgba(100, 0, 0, 255));
 			else
 				draw_square(minimap, pos, params->tile_size, get_rgba(255, 255, 255, 255));
 			coords.x++;

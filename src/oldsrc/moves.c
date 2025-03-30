@@ -13,6 +13,7 @@
 #include "../includes/moves.h"
 #include "../includes/cub3d.h"
 #include "../includes/drawing.h"
+#include "../includes/raycasting.h"
 
 int		is_grid_collision(int x, int y, t_map *map)
 {
@@ -66,6 +67,8 @@ int		is_collision(double x, double y, t_params *params)
 void	move_player(int x_offset, int y_offset, t_player *player, t_params *params)
 {
 	t_coords	pos;
+	//t_coords	p1;
+	//t_coords	p2;
 
 	printf("Player: x: %f y: %f\n", params->player->x , params->player->y);
 	pos.x = player->x + x_offset;
@@ -76,5 +79,12 @@ void	move_player(int x_offset, int y_offset, t_player *player, t_params *params)
 	player->y = pos.y;
 	draw_minimap(params);
 	draw_square(params->img, pos, params->tile_size, player->color);
+	// Test lines
+	//p1.x = 1;
+	//p1.y = 2;
+	//p2.x = 20;
+	//p2.y = 30;
+	//draw_line(params->img, p1, p2, player->color);
+	raycaster(params);
 	add_image_mlx(0, 0, params->img, params);
 }

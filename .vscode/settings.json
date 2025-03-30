@@ -8,6 +8,11 @@
 		"string_view": "c",
 		"initializer_list": "c",
 		"ranges": "c",
-		"utility": "c"
+		"utility": "c",
+		"tests.h": "c",
+		"math.h": "c",
+		"args.h": "c",
+		"mlx42.h": "c",
+		"minimap.h": "c"
 	}
 }

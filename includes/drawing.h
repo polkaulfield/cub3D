@@ -6,21 +6,32 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:06:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/26 19:42:15 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/30 19:16:53 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAWING_H
 # define DRAWING_H
-# include "../includes/cub3d.h"
-# include "../includes/params.h"
-# include "../includes/color.h"
-# include "../includes/coords.h"
+# include "cub3d.h"
+# include <math.h>
+# include "color.h"
 
-void	draw_minimap(t_params *params);
-void	draw_square(mlx_image_t *img, t_coords pos, int side, int color);
-void	draw_rectangle(mlx_image_t *img, t_coords pos, int width, int height, int color);
-void	draw_line(mlx_image_t *img, t_coords pos_start, t_coords pos_end, int width, int color);
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
 
-mlx_image_t	*make_minimap_image(t_params *params);
+typedef struct s_vector
+{
+	t_point	p1;
+	t_point	p2;
+}	t_vector;
+
+void	draw_square(mlx_image_t *img, t_point pos, int side, int color);
+void	draw_rectangle(mlx_image_t *img, t_point pos, t_point size, int color);
+void	draw_line(mlx_image_t *img, t_vector vector, int width, int color);
+void	draw_circle(mlx_image_t *img, t_point center, int radius, int color);
+
+
 #endif

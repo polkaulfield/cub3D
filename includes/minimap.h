@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 20:17:40 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/30 18:19:13 by pohernan         ###   ########.fr       */
+/*   Created: 2025/03/30 18:17:14 by pohernan          #+#    #+#             */
+/*   Updated: 2025/03/30 19:02:22 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include <math.h>
-# ifndef MPI
-#  define MPI 3.14159265358979323846
-#  define FOV 1.047197551
-#  define HALF_FOV 0.523598776
-#  define CASTED_RAYS 30
-# endif
-# include "../libs/libft/libft.h"
-# include "../libs/MLX42/include/MLX42/MLX42.h"
+#ifndef MINIMAP_H
+# define MINIMAP_H
+# include "cub3d.h"
+# include "drawing.h"
+# include "parser.h"
+# include "player.h"
+
+typedef struct s_minimap
+{
+	t_point	tile_size;
+	t_point	size;
+}	t_minimap;
+
+t_minimap	*init_minimap(mlx_image_t *img, t_map *map);
+void	draw_minimap(mlx_image_t *img, t_minimap *minimap, t_map *map);
+
 #endif
-
-
-
-
-

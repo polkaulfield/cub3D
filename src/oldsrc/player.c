@@ -5,35 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/30 17:02:01 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/30 19:03:07 by pohernan         ###   ########.fr       */
+/*   Created: 2025/03/17 21:39:22 by pohernan          #+#    #+#             */
+/*   Updated: 2025/03/26 17:57:37 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/cub3d.h"
 #include "../includes/player.h"
+#include "../includes/color.h"
+#include "../includes/galloc.h"
 
-static double	get_angle_nsew(char direction)
-{
-	if (direction == 'N')
-		return (0);
-	if (direction == 'S')
-		return (180);
-	if (direction == 'E')
-		return (90);
-	if (direction == 'W')
-		return (270);
-	return (-1);
-}
-
-t_player	*init_player(t_map *map)
+t_player	*init_player(void)
 {
 	t_player	*player;
 
-	player = malloc(sizeof(t_player));
+	player = galloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
-	player->pos.x = map->x_player;
-	player->pos.y = map->y_player;
-	player->angle = get_angle_nsew(map->player_direction);
+	player->img = NULL;
+	player->x = 0;
+	player->y = 0;
+	player->step = 5;
+	player->color = get_rgba(0, 255 ,0, 255);
+	player->player_angle = MPI;
 	return (player);
 }

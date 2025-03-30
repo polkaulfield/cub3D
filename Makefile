@@ -1,6 +1,6 @@
 CC		:= gcc
 NAME	:= cub3d
-CFLAGS	:= -g -Wextra -Wall -Werror -Ofast -ffast-math -march=native -fsanitize=address
+CFLAGS	:= -g -Wextra -Wall -Werror -Ofast -ffast-math -march=native #-fsanitize=address
 LIBMLX	:= ./libs/MLX42
 LIBFT	:= ./libs/libft
 
@@ -8,13 +8,14 @@ HEADERS	:= -I ./include -I $(LIBMLX)/include -I $(LIBFT)
 LIBS	:= -L $(LIBFT) -lft $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS	:= ./src/main.c \
 			./src/color.c \
-			./src/params.c \
-			./src/player.c \
-			./src/drawing.c \
+			./src/args.c \
 			./src/errors.c \
-			./src/images.c \
-			./src/moves.c \
-			./src/keys.c \
+			./src/player.c \
+			./src/tests.c \
+			./src/minimap.c \
+			./src/drawing/circles.c \
+			./src/drawing/lines.c \
+			./src/drawing/rectangles.c \
 			./src/parser/init_map.c \
 			./src/parser/parser.c \
 			./src/parser/parser_checkers.c \
