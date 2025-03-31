@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:06:41 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/30 17:06:41 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/30 20:36:02 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	draw_line_y(mlx_image_t *img, t_vector vector, int width, int color)
 
 void	draw_line(mlx_image_t *img, t_vector vector, int width, int color)
 {
-	if (fabs(vector.p2.x - vector.p1.x) < fabs(vector.p2.y - vector.p1.y))
+	if (abs(vector.p2.x - vector.p1.x) < abs(vector.p2.y - vector.p1.y))
 		draw_line_x(img, vector, width, color);
 	else
 		draw_line_y(img, vector, width, color);

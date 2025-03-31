@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:08:25 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/30 17:14:03 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/30 20:33:00 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	draw_rectangle(mlx_image_t *img, t_point pos, t_point size, int color)
 	}
 }
 /*
-void	draw_circle(mlx_image_t *img, t_point center, int radius, int color)
+void	draw_circle(mlx_image_t *img, t_dpoint center, int radius, int color)
 {
 	double	dtheta;
 	double	theta;
 	int		n_points;
 	int		i;
-	t_point	point;
+	t_dpoint	point;
 
 	n_points = 12;
 	dtheta = 2 * MPI / n_points;

@@ -6,7 +6,7 @@
 
 typedef struct s_player
 {
-	t_point	pos;
+	t_dpoint	pos;
 	double	fov;
 	double	half_fov;
 	double	angle;
