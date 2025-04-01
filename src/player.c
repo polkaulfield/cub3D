@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:02:01 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/01 20:44:36 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/01 22:03:52 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,40 +40,19 @@ t_player	*init_player(t_map *map)
 
 t_dpoint	get_next_pos(double h, double angle, t_dpoint pos)
 {
-	if (angle <= deg2rad(90))
-	{
-		angle = deg2rad(angle);
-		pos.x += cos(angle) * h;
-		pos.y -= sin(angle) * h;
-	}
-	else if (angle <= 180)
-	{
-		angle -= 90;
-		angle = deg2rad(angle);
-		pos.x += cos(angle) * h;
-		pos.y += sin(angle) * h;
-	}
-	else if (angle <= 270)
-	{
-		angle -= 180;
-		angle = deg2rad(angle);
-		pos.x -= cos(angle) * h;
-		pos.y += sin(angle) * h;
-	}
-	else if (angle <= 360)
-	{
-		angle -= 270;
-		angle = deg2rad(angle);
-		pos.x -= cos(angle) * h;
-		pos.y -= sin(angle) * h;
-	}
-	printf("Angle: %f\n", angle);
-	return (pos);
+    angle = deg2rad(angle);
+    pos.x += cos(angle) * h;
+    pos.y += sin(angle) * h;
+
+    printf("New position: (%.2f, %.2f)\n", pos.x, pos.y);
+    return pos;
 }
 
 double	add_angle(double angle, double increment)
 {
 	angle += increment;
+	while (angle < 0)
+		angle += 360;
 	while (angle > 360)
 		angle -= 360;
 	return (angle);
