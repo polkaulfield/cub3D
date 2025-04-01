@@ -13,6 +13,8 @@
 		"math.h": "c",
 		"args.h": "c",
 		"mlx42.h": "c",
-		"minimap.h": "c"
+		"minimap.h": "c",
+		"color.h": "c",
+		"keys.h": "c"
 	}
 }

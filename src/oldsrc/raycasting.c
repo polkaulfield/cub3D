@@ -32,7 +32,7 @@ void	raycaster(t_params *params)
             if (params->map->grid[row][col] == '1')
             {
                 printf("CASTING RAY!\n");
-                draw_line(params->img, params->player->pos, pos, get_rgba(255, 0, 255, 255));
+                draw_line(params->img, params->player->pos, pos, (255, 0, 255, 255));
                 break ;
             }
             depth++;

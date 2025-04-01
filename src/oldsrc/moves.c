@@ -6,14 +6,11 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:55:44 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/26 19:42:05 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/03/31 20:36:59 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/moves.h"
-#include "../includes/cub3d.h"
-#include "../includes/drawing.h"
-#include "../includes/raycasting.h"
 
 int		is_grid_collision(int x, int y, t_map *map)
 {
@@ -49,7 +46,6 @@ int		is_collision_borders(double x, double y, t_params *params)
 		return (1);
 	return (0);
 }
-*/
 
 int		is_collision(double x, double y, t_params *params)
 {
@@ -88,3 +84,4 @@ void	move_player(int x_offset, int y_offset, t_player *player, t_params *params)
 	raycaster(params);
 	add_image_mlx(0, 0, params->img, params);
 }
+*/

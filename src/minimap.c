@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:16:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/31 18:37:18 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:34:39 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	draw_minimap(mlx_image_t *img, t_minimap *minimap, t_map *map)
 	t_point	cell;
 	t_point	minimap_pos;
 
-	light_grey = get_rgba(192, 191, 191, 255);
-	dark_grey = get_rgba(65, 65, 65, 255);
+	light_grey = encode_rgb(192, 191, 191);
+	dark_grey = encode_rgb(65, 65, 65);
 	cell.y = 0;
 	while (cell.y < map->height)
 	{

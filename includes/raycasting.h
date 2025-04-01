@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.h                                            :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 19:54:34 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/18 20:00:36 by pohernan         ###   ########.fr       */
+/*   Created: 2025/03/18 17:06:49 by pohernan          #+#    #+#             */
+/*   Updated: 2025/03/31 19:46:32 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_H
-# define KEYS_H
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
 # include "cub3d.h"
-# include "params.h"
-# include "player.h"
-# include "images.h"
 # include "color.h"
-# include "moves.h"
+# include "args.h"
 
-void	keys_hook(void* args);
+void	raycaster(t_args *args);
 #endif

@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:08:25 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/26 19:57:33 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:11:59 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	draw_line(mlx_image_t *img, t_coords p1, t_coords p2, int color)
 		while ((dir == 1 && x < p2.x) || (dir == -1 && x > p2.x))
 		{
 			pixel_pos = get_pixel_pos_y(p1, p2, x);
-			mlx_put_pixel(img, pixel_pos.x, pixel_pos.y, color); 
+			mlx_put_pixel(img, pixel_pos.x, pixel_pos.y, color);
 			x += dir;
 		}
 	}
@@ -61,7 +61,7 @@ void	draw_line(mlx_image_t *img, t_coords p1, t_coords p2, int color)
 		while ((dir == 1 && y < p2.y) || (dir == -1 && y > p2.y))
 		{
 			pixel_pos = get_pixel_pos_x(p1, p2, y);
-			mlx_put_pixel(img, pixel_pos.x, pixel_pos.y, color); 
+			mlx_put_pixel(img, pixel_pos.x, pixel_pos.y, color);
 			y += dir;
 		}
 	}
@@ -122,7 +122,7 @@ mlx_image_t	*make_minimap_image(t_params *params)
 
 	width = params->mlx->width / 4;
 	height = params->mlx->height / 4;
-	img = init_simple_image(width, height, get_rgba(0, 255, 0, 255), params);
+	img = init_simple_image(width, height, encode_rgb(0, 255, 0), params);
 	return (img);
 }
 
@@ -143,9 +143,9 @@ void	draw_minimap(t_params *params)
 			pos.x = params->tile_size * coords.x;
 			pos.y = params->tile_size * coords.y;
 			if (params->map->grid[coords.x][coords.y] == '1')
-				draw_square(minimap, pos, params->tile_size, get_rgba(100, 0, 0, 255));
+				draw_square(minimap, pos, params->tile_size, encode_rgb(100, 0, 0));
 			else
-				draw_square(minimap, pos, params->tile_size, get_rgba(255, 255, 255, 255));
+				draw_square(minimap, pos, params->tile_size, encode_rgb(255, 255, 255));
 			coords.x++;
 		}
 		coords.y++;

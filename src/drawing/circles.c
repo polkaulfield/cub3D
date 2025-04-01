@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:03:30 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/30 20:33:34 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:48:28 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	draw_circle(mlx_image_t *img, t_point center, int radius, int color)
 	int	y;
 
 	y = 0;
+	printf("center x: %d, y: %d\n", center.x, center.y);
 	while (y <= radius)
 	{
 		x = 0;
@@ -30,6 +31,7 @@ void	draw_circle(mlx_image_t *img, t_point center, int radius, int color)
 			mlx_put_pixel(img, center.x - x, center.y - y, color);
 			x++;
 		}
+		y++;
 	}
 }
 /*

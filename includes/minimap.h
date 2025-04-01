@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:17:14 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/30 20:34:21 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:25:35 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include "cub3d.h"
 # include "drawing.h"
 # include "parser.h"
-# include "player.h"
 
 typedef struct s_minimap
 {
