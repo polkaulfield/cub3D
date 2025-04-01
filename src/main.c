@@ -16,9 +16,14 @@
 
 static void	game_loop(t_args *args)
 {
+	mlx_image_t	*tmp_img;
+
+	tmp_img = args->img;
+	args->img = mlx_new_image(args->mlx, WIDTH, HEIGHT);
 	draw_minimap(args->img, args->minimap, args->map);
 	draw_player_minimap(args->player, args->minimap, args->map, args->img);
 	mlx_image_to_window(args->mlx, args->img, 0, 0);
+	mlx_delete_image(args->mlx, tmp_img);
 }
 
 static void	keys_hook(void* params)
@@ -33,7 +38,7 @@ static void	keys_hook(void* params)
 		mlx_close_window(args->mlx);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_UP))
 	{
-		move_player(UP, args->player, 2);
+		move_player(UP, args->player, 0.2);
 		game_loop(args);
 	}
 	if (mlx_is_key_down(args->mlx, MLX_KEY_DOWN))

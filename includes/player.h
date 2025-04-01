@@ -4,6 +4,7 @@
 # include "drawing.h"
 # include "parser.h"
 # include "minimap.h"
+# include "misc.h"
 
 typedef struct s_player
 {

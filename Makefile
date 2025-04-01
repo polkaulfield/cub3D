@@ -13,6 +13,7 @@ SRCS	:= ./src/main.c \
 			./src/player.c \
 			./src/tests.c \
 			./src/minimap.c \
+			./src/misc.c \
 			./src/drawing/circles.c \
 			./src/drawing/lines.c \
 			./src/drawing/rectangles.c \

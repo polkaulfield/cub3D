@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:02:01 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/01 20:20:51 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/01 20:44:36 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,30 @@ t_player	*init_player(t_map *map)
 
 t_dpoint	get_next_pos(double h, double angle, t_dpoint pos)
 {
-	if (angle <= 90)
+	if (angle <= deg2rad(90))
 	{
+		angle = deg2rad(angle);
 		pos.x += cos(angle) * h;
 		pos.y -= sin(angle) * h;
 	}
 	else if (angle <= 180)
 	{
 		angle -= 90;
+		angle = deg2rad(angle);
 		pos.x += cos(angle) * h;
 		pos.y += sin(angle) * h;
 	}
 	else if (angle <= 270)
 	{
 		angle -= 180;
+		angle = deg2rad(angle);
 		pos.x -= cos(angle) * h;
 		pos.y += sin(angle) * h;
 	}
 	else if (angle <= 360)
 	{
 		angle -= 270;
+		angle = deg2rad(angle);
 		pos.x -= cos(angle) * h;
 		pos.y -= sin(angle) * h;
 	}
@@ -92,8 +96,8 @@ void	draw_player_minimap(t_player *player, t_minimap *minimap, t_map *map, mlx_i
 	(void)map;
 	printf("Player x: %d, y: %d\n", (int)player->pos.x, (int)player->pos.y);
 	printf("minimap size x: %d, y: %d\n", minimap->size.x, minimap->size.y);
-	point.x = minimap->size.x / (int)player->pos.x;
-	point.y = minimap->size.y / (int)player->pos.y;
+	point.x = (int)(player->pos.x * minimap->tile_size.x);
+	point.y = (int)(player->pos.y * minimap->tile_size.y);
 	printf("Point x: %d, y: %d\n", point.x, point.y);
 	draw_circle(img, point, 10, encode_rgb(255, 255, 255));
 }

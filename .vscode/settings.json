@@ -15,6 +15,7 @@
 		"mlx42.h": "c",
 		"minimap.h": "c",
 		"color.h": "c",
-		"keys.h": "c"
+		"keys.h": "c",
+		"player.h": "c"
 	}
 }
