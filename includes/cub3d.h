@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:17:40 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/01 20:09:16 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:07:49 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 #  define FOV 1.047197551
 #  define HALF_FOV 0.523598776
 #  define CASTED_RAYS 30
-#  define MAX_DEPTH 100
+#  define STEP_ANGLE FOV / CASTED_RAYS
+#  define MAX_DEPTH 1000
 #  define UP 0
 #  define DOWN 1
 #  define LEFT 2

@@ -1,6 +1,6 @@
 CC		:= gcc
 NAME	:= cub3d
-CFLAGS	:= -g -Wextra -Wall -Werror# -Ofast -ffast-math -march=native #-fsanitize=address
+CFLAGS	:=  -Wextra -Wall -Werror -Ofast -march=native -ffast-math #-fsanitize=address
 LIBMLX	:= ./libs/MLX42
 LIBFT	:= ./libs/libft
 
@@ -13,6 +13,7 @@ SRCS	:= ./src/main.c \
 			./src/player.c \
 			./src/tests.c \
 			./src/minimap.c \
+			./src/raycasting.c \
 			./src/misc.c \
 			./src/drawing/circles.c \
 			./src/drawing/lines.c \

@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:02:01 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/03 18:16:18 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:57:01 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,11 @@ t_player	*init_player(t_map *map)
 
 t_dpoint	get_next_pos(double h, double angle, t_dpoint pos)
 {
-    angle = deg2rad(angle);
-    pos.x += cos(angle) * h;
-    pos.y += sin(angle) * h;
-
-    printf("New position: (%.2f, %.2f)\n", pos.x, pos.y);
-    return pos;
+	angle = deg2rad(angle);
+	pos.x += cos(angle) * h;
+	pos.y += sin(angle) * h;
+	printf("New position: (%.2f, %.2f)\n", pos.x, pos.y);
+	return pos;
 }
 
 double	add_angle(double angle, double increment)
@@ -103,20 +102,11 @@ void	draw_player_minimap(t_player *player, t_minimap *minimap, t_map *map, mlx_i
 	point.y = (int)(player->pos.y * minimap->tile_size.y + minimap->tile_size.y / 2);
 	printf("Point x: %d, y: %d\n", point.x, point.y);
 	draw_circle(img, point, 10, encode_rgb(255, 255, 255));
-
-	t_vector	vector;
-	t_point		point2;
-	t_dpoint	dpoint;
-	dpoint.x = point.x;
-	dpoint.y = point.y;
 	printf("-_- angle: %f\n", player->angle);
-
-	dpoint = get_next_pos(10, player->angle, dpoint);
-	point2.x = dpoint.x;
-	point2.y = dpoint.y;
-	vector.p1 = point;
-	vector.p2 = point2;
-	draw_line(img, vector, 5, get_rgba(0,0,255,255));
+	//vector.p1 = point;
+	//vector.p2 = point2;
+	//draw_line(img, vector, 5, get_rgba(0,0,255,255));
+	raycaster(img, map, minimap, player);
 
 	/*dpoint = get_next_pos(50, player->angle - 45, dpoint);
 	point2.x = dpoint.x;

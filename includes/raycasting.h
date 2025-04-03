@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:06:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/31 19:46:32 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:07:29 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 # include "cub3d.h"
 # include "color.h"
 # include "args.h"
-
 # include "structs.h"
 
-void	raycaster(t_args *args);
+void	raycaster(mlx_image_t *img, t_map *map, t_minimap *minimap, t_player *player);
 #endif

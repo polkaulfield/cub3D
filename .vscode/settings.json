@@ -16,6 +16,7 @@
 		"minimap.h": "c",
 		"color.h": "c",
 		"keys.h": "c",
-		"player.h": "c"
+		"player.h": "c",
+		"raycasting.h": "c"
 	}
 }

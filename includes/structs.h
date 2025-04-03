@@ -37,7 +37,6 @@ typedef struct s_dvector
 	t_dpoint	p2;
 }	t_dvector;
 
-
 typedef struct s_vector
 {
 	t_point	p1;

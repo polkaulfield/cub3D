@@ -5,6 +5,7 @@
 # include "parser.h"
 # include "minimap.h"
 # include "misc.h"
+# include "raycasting.h"
 
 # include "structs.h"
 

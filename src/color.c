@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 00:07:18 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/26 19:20:55 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:08:40 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int	get_rgba(int r, int g, int b, int a)
 
 int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
-    return (red << 16 | green << 8 | blue);
+    return (red << 24 | green << 16 | blue << 8 | 255);
 }
