@@ -17,15 +17,8 @@
 # include "player.h"
 # include "minimap.h"
 
-typedef struct s_args
-{
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_map		*map;
-	t_player	*player;
-	t_minimap	*minimap;
+# include "structs.h"
 
-}	t_args;
 
 t_args	*init_args(mlx_image_t *img, mlx_t *mlx, t_map *map);
 

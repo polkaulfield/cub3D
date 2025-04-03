@@ -16,11 +16,7 @@
 # include "drawing.h"
 # include "parser.h"
 
-typedef struct s_minimap
-{
-	t_point	tile_size;
-	t_point	size;
-}	t_minimap;
+# include "structs.h"
 
 t_minimap	*init_minimap(mlx_image_t *img, t_map *map);
 void	draw_minimap(mlx_image_t *img, t_minimap *minimap, t_map *map);

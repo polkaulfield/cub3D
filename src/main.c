@@ -30,23 +30,49 @@ static void	keys_hook(void* params)
 {
 	t_args      *args;
 	t_player	*player;
-
+	int flag = 0;
 
 	args = (t_args *)params;
 	player = args->player;
 	if (mlx_is_key_down(args->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(args->mlx);
-	if (mlx_is_key_down(args->mlx, MLX_KEY_UP))
+	if (mlx_is_key_down(args->mlx, MLX_KEY_UP) || mlx_is_key_down(args->mlx, MLX_KEY_W))
 	{
-		move_player(UP, args->player, 0.2);
-		game_loop(args);
+		move_player(UP, args->player, 0.2, args);
+		flag = 1;
+	}
+	if (mlx_is_key_down(args->mlx,MLX_KEY_S))
+	{
+		move_player(S, args->player, -0.2, args);
+		flag = 1;
+	}
+	if (mlx_is_key_down(args->mlx,MLX_KEY_D))
+	{
+		move_player(D, args->player, 0.2, args);
+		flag = 1;
+	}
+	if (mlx_is_key_down(args->mlx,MLX_KEY_A))
+	{
+		move_player(A, args->player, -0.2, args);
+		flag = 1;
 	}
 	if (mlx_is_key_down(args->mlx, MLX_KEY_DOWN))
-		move_player(DOWN, player, 2);
+		move_player(DOWN, player, 2, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_LEFT))
-		move_player(LEFT, player, 2);
+	{
+		move_player(LEFT, player, 2, args);
+		flag = 1;
+	}
 	if (mlx_is_key_down(args->mlx, MLX_KEY_RIGHT))
-		move_player(RIGHT, player, 2);
+	{
+		move_player(RIGHT, player, 2, args);
+		flag = 1;
+	}
+	if (flag == 1)
+	{
+		game_loop(args);
+		flag = 0;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -67,6 +93,7 @@ int	main(int argc, char **argv)
 	args = init_args(img, mlx, map);
 	//draw_stuff(args);
 	//draw_minimap(args->img, args->minimap, args->map);
+	game_loop(args);
 	mlx_image_to_window(args->mlx, args->img, 0, 0);
 	mlx_loop_hook(args->mlx, keys_hook, args);
 	mlx_loop(args->mlx);

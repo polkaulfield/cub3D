@@ -16,31 +16,7 @@
 # include <math.h>
 # include "color.h"
 
-typedef struct s_dpoint
-{
-	double	x;
-	double	y;
-}	t_dpoint;
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}	t_point;
-
-typedef struct s_dvector
-{
-	t_dpoint	p1;
-	t_dpoint	p2;
-}	t_dvector;
-
-
-typedef struct s_vector
-{
-	t_point	p1;
-	t_point	p2;
-}	t_vector;
-
+# include "structs.h"
 
 void	draw_square(mlx_image_t *img, t_point pos, int side, int color);
 void	draw_rectangle(mlx_image_t *img, t_point pos, t_point size, int color);

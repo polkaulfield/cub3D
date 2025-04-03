@@ -14,6 +14,8 @@
 # define COLOR_H
 # include "cub3d.h"
 
+# include "structs.h"
+
 int		get_rgba(int r, int g, int b, int a);
 int     encode_rgb(uint8_t red, uint8_t green, uint8_t blue);
 void	*colorset(void *s, int c, size_t n);

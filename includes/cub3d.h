@@ -16,6 +16,9 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
+# include "../libs/libft/libft.h"
+# include "../libs/MLX42/include/MLX42/MLX42.h"
+# include "structs.h"
 # ifndef MPI
 #  define MPI 3.141592
 #  define FOV 1.047197551
@@ -26,11 +29,9 @@
 #  define DOWN 1
 #  define LEFT 2
 #  define RIGHT 3
+#  define W 4
+#  define S 5
+#  define A 6
+#  define D 7
 # endif
-# include "../libs/libft/libft.h"
-# include "../libs/MLX42/include/MLX42/MLX42.h"
 #endif
-
-
-
-

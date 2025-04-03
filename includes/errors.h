@@ -14,5 +14,7 @@
 # define ERRORS_H
 # include "cub3d.h"
 
+# include "structs.h"
+
 void	error(void);
 #endif

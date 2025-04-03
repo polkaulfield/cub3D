@@ -12,15 +12,28 @@
 
 #include "../includes/player.h"
 
+int		is_grid_collision(int x, int y, t_map *map)
+{
+	if (y >= 1 &&
+		x >= 1)
+	{
+		if (map->grid[x][y] == '1')
+			return (1);
+	}
+	else
+		return (1);
+	return (0);
+}
+
 static double	get_angle_nsew(char direction)
 {
-	if (direction == 'N')
-		return (0);
-	if (direction == 'S')
-		return (180);
 	if (direction == 'E')
-		return (270);
+		return (0);
 	if (direction == 'W')
+		return (180);
+	if (direction == 'N')
+		return (270);
+	if (direction == 'S')
 		return (90);
 	return (-1);
 }
@@ -58,14 +71,25 @@ double	add_angle(double angle, double increment)
 	return (angle);
 }
 
-void	move_player(int key, t_player *player, double len)
+void	move_player(int key, t_player *player, double len, t_args *args)
 {
-	if (key == UP)
-		player->pos = get_next_pos(len, player->angle, player->pos);
-	if (key == RIGHT)
+	t_dpoint	dpoint;
+
+	dpoint.x = 0;
+	if (key == UP || key == W)
+		dpoint = get_next_pos(len, player->angle, player->pos);
+	else if (key == DOWN || key == S)
+		dpoint = get_next_pos(len, player->angle, player->pos);
+	else if (key == D || key == A)
+		dpoint = get_next_pos(len, player->angle + 90, player->pos);
+	else if (key == RIGHT)
 		player->angle = add_angle(player->angle, 10);
-	if (key == LEFT)
+	else if (key == LEFT)
 		player->angle = add_angle(player->angle, -10);
+	else
+		return ;
+	if (dpoint.x != 0 && !is_grid_collision((int)dpoint.x, (int)dpoint.y, args->map))
+		player->pos = dpoint;
 }
 
 void	draw_player_minimap(t_player *player, t_minimap *minimap, t_map *map, mlx_image_t *img)
@@ -75,9 +99,43 @@ void	draw_player_minimap(t_player *player, t_minimap *minimap, t_map *map, mlx_i
 	(void)map;
 	printf("Player x: %d, y: %d\n", (int)player->pos.x, (int)player->pos.y);
 	printf("minimap size x: %d, y: %d\n", minimap->size.x, minimap->size.y);
-	point.x = (int)(player->pos.x * minimap->tile_size.x);
-	point.y = (int)(player->pos.y * minimap->tile_size.y);
+	point.x = (int)(player->pos.x * minimap->tile_size.x + minimap->tile_size.x / 2);
+	point.y = (int)(player->pos.y * minimap->tile_size.y + minimap->tile_size.y / 2);
 	printf("Point x: %d, y: %d\n", point.x, point.y);
 	draw_circle(img, point, 10, encode_rgb(255, 255, 255));
-}
 
+	t_vector	vector;
+	t_point		point2;
+	t_dpoint	dpoint;
+	dpoint.x = point.x;
+	dpoint.y = point.y;
+	printf("-_- angle: %f\n", player->angle);
+
+	dpoint = get_next_pos(10, player->angle, dpoint);
+	point2.x = dpoint.x;
+	point2.y = dpoint.y;
+	vector.p1 = point;
+	vector.p2 = point2;
+	draw_line(img, vector, 5, get_rgba(0,0,255,255));
+
+	/*dpoint = get_next_pos(50, player->angle - 45, dpoint);
+	point2.x = dpoint.x;
+	point2.y = dpoint.y;
+	vector.p1 = point;
+	vector.p2 = point2;
+	draw_line(img, vector, 2, get_rgba(0,255,0,255));
+
+	dpoint = get_next_pos(50, player->angle + 45, dpoint);
+	point2.x = dpoint.x;
+	point2.y = dpoint.y;
+	//vector.p1 = point;
+	vector.p2 = point2;
+	draw_line(img, vector, 2, get_rgba(0,255,0,255));
+
+	dpoint = get_next_pos(50, player->angle + 90, dpoint);
+	point2.x = dpoint.x;
+	point2.y = dpoint.y;
+	//vector.p1 = point;
+	vector.p2 = point2;
+	draw_line(img, vector, 2, get_rgba(0,255,0,255));*/
+}

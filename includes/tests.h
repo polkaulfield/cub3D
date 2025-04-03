@@ -10,10 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef TESTS_H
+# define TESTS_H
+
 #include "args.h"
 #include "cub3d.h"
 #include "player.h"
 #include "color.h"
 #include "drawing.h"
 
+# include "structs.h"
+
 void	draw_stuff(t_args *args);
+
+#endif

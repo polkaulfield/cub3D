@@ -16,5 +16,7 @@
 # include "color.h"
 # include "args.h"
 
+# include "structs.h"
+
 void	raycaster(t_args *args);
 #endif

@@ -7,6 +7,9 @@
 # include <unistd.h>
 # include <fcntl.h>
 
+# include "structs.h"
+
+
 # define NO 0
 # define SO 1
 # define WE 2
@@ -14,20 +17,6 @@
 # define Y 0
 # define X 1
 
-typedef struct s_map
-{
-	char	*file_name;
-	int		fd_file;
-	char	player_direction;
-	double	x_player;
-	double	y_player;
-	char	**grid;
-	int		height;
-	int		width;
-	char	*texture[5];
-	int		floor[3];
-	int		ceiling[3];
-}	t_map;
 
 //	init_map.c
 t_map	*init_map(char *file);

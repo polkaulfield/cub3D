@@ -1,6 +1,6 @@
 CC		:= gcc
 NAME	:= cub3d
-CFLAGS	:= -g -Wextra -Wall -Werror -Ofast -ffast-math -march=native #-fsanitize=address
+CFLAGS	:= -g -Wextra -Wall -Werror# -Ofast -ffast-math -march=native #-fsanitize=address
 LIBMLX	:= ./libs/MLX42
 LIBFT	:= ./libs/libft
 

@@ -21,6 +21,7 @@ t_galloc	*init_galloc(void)
 		if (iter == 0)
 		{
 			iter++;
+			l_galloc = NULL;
 			init_galloc_extend(l_galloc);
 		}
 		else
