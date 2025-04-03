@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:07:58 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/20 22:30:09 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:41:34 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("LINE: %s", line);
+		//printf("LINE: %s", line);
 		free(line);
 		line = get_next_line(fd);
 	}

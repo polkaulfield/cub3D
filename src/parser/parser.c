@@ -60,26 +60,26 @@ t_map	*parser(char *file)
 	return (map);
 }
 /*
-printf("check\n");
-	printf("%s\n", map->file_name);
-	printf("%i\n", map->fd_file);
+//printf("check\n");
+	//printf("%s\n", map->file_name);
+	//printf("%i\n", map->fd_file);
 	int i = -1;
 	while (map->grid && map->grid[++i])
-		printf("%s\n", map->grid[i]);
-	printf("end map\n");
+		//printf("%s\n", map->grid[i]);
+	//printf("end map\n");
 	i = -1;
 	while (map->texture[++i])
-		printf("%s\n", map->texture[i]);
-	printf("%i\n", map->floor[0]);
-	printf("%i\n", map->floor[1]);
-	printf("%i\n", map->floor[2]);
-	printf("%i\n", map->ceiling[0]);
-	printf("%i\n", map->ceiling[1]);
-	printf("%i\n", map->ceiling[2]);
+		//printf("%s\n", map->texture[i]);
+	//printf("%i\n", map->floor[0]);
+	//printf("%i\n", map->floor[1]);
+	//printf("%i\n", map->floor[2]);
+	//printf("%i\n", map->ceiling[0]);
+	//printf("%i\n", map->ceiling[1]);
+	//printf("%i\n", map->ceiling[2]);
 
 
 i = -1;
 	while (map->grid && map->grid[++i])
-		printf("%s\n", map->grid[i]);
-	printf("end map\n");
+		//printf("%s\n", map->grid[i]);
+	//printf("end map\n");
 */

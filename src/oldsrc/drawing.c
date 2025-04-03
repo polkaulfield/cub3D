@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:08:25 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/01 19:11:59 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:41:34 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	draw_minimap(t_params *params)
 		coords.x = 0;
 		while (coords.x < params->map->width)
 		{
-			printf("%c ", params->map->grid[coords.x][coords.y]);
+			//printf("%c ", params->map->grid[coords.x][coords.y]);
 			pos.x = params->tile_size * coords.x;
 			pos.y = params->tile_size * coords.y;
 			if (params->map->grid[coords.x][coords.y] == '1')
@@ -149,7 +149,7 @@ void	draw_minimap(t_params *params)
 			coords.x++;
 		}
 		coords.y++;
-		printf("\n");
+		//printf("\n");
 	}
 	if (params->img)
 		mlx_delete_image(params->mlx, params->img);

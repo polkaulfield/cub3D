@@ -8,10 +8,10 @@ void	*add_galloc_arr(void **mem)
 
 	while (mem[++i])
 	{
-		printf("%p\n", mem[i]);
+		//printf("%p\n", mem[i]);
 		add_galloc(mem[i]);
 	}
-	printf("%p\n", mem);
+	//printf("%p\n", mem);
 	add_galloc(mem);
 	return (mem);
 }

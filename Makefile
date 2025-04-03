@@ -44,7 +44,7 @@ libft:
 	@make -s -C $(LIBFT)
 
 %.o: %.c $(HEADERS) Makefile
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && //printf "Compiling: $(notdir $<)"
 
 $(NAME): libft $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)

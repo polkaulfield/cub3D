@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:16:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/01 19:34:39 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:41:34 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_minimap	*init_minimap(mlx_image_t *img, t_map *map)
 	minimap->size.y = img->height / 4;
 	minimap->tile_size.x = minimap->size.x / map->width;
 	minimap->tile_size.y = minimap->size.y / map->height;
-	printf("minimap size x: %d y: %d tile size x: %d y: %d\n", minimap->size.x, minimap->size.y, minimap->tile_size.x, minimap->tile_size.y);
+	//printf("minimap size x: %d y: %d tile size x: %d y: %d\n", minimap->size.x, minimap->size.y, minimap->tile_size.x, minimap->tile_size.y);
 	return (minimap);
 }
 
@@ -44,7 +44,7 @@ void	draw_minimap(mlx_image_t *img, t_minimap *minimap, t_map *map)
 		{
 			minimap_pos.x = cell.x * minimap->tile_size.x;
 			minimap_pos.y = cell.y * minimap->tile_size.y;
-			printf("%c ", map->grid[(int)cell.x][(int)cell.y]);
+			//printf("%c ", map->grid[(int)cell.x][(int)cell.y]);
 			if (map->grid[(int)cell.x][(int)cell.y] == '1')
 				draw_rectangle(img, minimap_pos, minimap->tile_size, dark_grey);
 			else

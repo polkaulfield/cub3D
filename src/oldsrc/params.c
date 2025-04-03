@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:39:22 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/26 19:56:39 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:41:34 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_params	*init_params(mlx_t *mlx, t_map *map)
 	params->img = mlx_new_image(params->mlx, mlx->width, mlx->height);
 
 	params->map = map;
-	printf ("map width: %d map height %d\n", map->width, map->height);
+	//printf ("map width: %d map height %d\n", map->width, map->height);
 	//TODO IMPLEMENT RATIO 1.8 or so
 	if (map->height * 2 < map->width)
 		params->tile_size = (mlx->width / 4) / map->width;

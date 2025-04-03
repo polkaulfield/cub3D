@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:55:44 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/03 18:10:33 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:41:34 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int		is_collision_borders(double x, double y, t_params *params)
 	cell_floor[1] = (int)floor(y / cell_size);
 	cell_ceil[0] = (int)ceil(x / cell_size);
 	cell_ceil[1] = (int)ceil(y / cell_size);
-	printf("Curr cell floor: x:%d y:%d\n", cell_floor[0], cell_floor[1]);
-	printf("Curr cell ceil: x:%d y:%d\n", cell_ceil[0], cell_ceil[1]);
+	//printf("Curr cell floor: x:%d y:%d\n", cell_floor[0], cell_floor[1]);
+	//printf("Curr cell ceil: x:%d y:%d\n", cell_ceil[0], cell_ceil[1]);
 	if (is_grid_collision(cell_floor[0], cell_floor[1], params->map) ||
 		is_grid_collision(cell_ceil[0], cell_floor[1], params->map) ||
 		is_grid_collision(cell_floor[0], cell_ceil[1], params->map) ||
@@ -51,10 +51,10 @@ int		is_collision(double x, double y, t_params *params)
 {
 	int cell_round[2];
 
-	printf("map width: %d map height: %d\n", params->map->width, params->map->height);
+	//printf("map width: %d map height: %d\n", params->map->width, params->map->height);
 	cell_round[0] = (int)round(x / params->tile_size);
 	cell_round[1] = (int)round(y / params->tile_size);
-	printf("Curr cell: x:%d y:%d\n", cell_round[0], cell_round[1]);
+	//printf("Curr cell: x:%d y:%d\n", cell_round[0], cell_round[1]);
 	if (is_grid_collision(cell_round[0], cell_round[1], params->map))
 		return (1);
 	return (0);
@@ -66,7 +66,7 @@ void	move_player(int x_offset, int y_offset, t_player *player, t_params *params)
 	//t_coords	p1;
 	//t_coords	p2;
 
-	printf("Player: x: %f y: %f\n", params->player->x , params->player->y);
+	//printf("Player: x: %f y: %f\n", params->player->x , params->player->y);
 	pos.x = player->x + x_offset;
 	pos.y = player->y + y_offset;
 	if (is_collision(pos.x, pos.y, params))

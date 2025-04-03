@@ -9,7 +9,7 @@ void	color_parser(char *line, t_map *map)
 	i = 1;
 	while (line[i] == ' ')
 		i++;
-	printf("%s\n", line);
+	//printf("%s\n", line);
 	line_splited = add_galloc_arr((void **)ft_split(&line[i], ','));
 	while (line[i])
 	{
