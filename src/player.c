@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:02:01 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/03 23:41:34 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/04 00:21:52 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,41 +91,12 @@ void	move_player(int key, t_player *player, double len, t_args *args)
 		player->pos = dpoint;
 }
 
-void	draw_player_minimap(t_player *player, t_minimap *minimap, t_map *map, mlx_image_t *img)
+void	render(t_args *args)
 {
 	t_point	point;
 
-	(void)map;
-	//printf("Player x: %d, y: %d\n", (int)player->pos.x, (int)player->pos.y);
-	//printf("minimap size x: %d, y: %d\n", minimap->size.x, minimap->size.y);
-	point.x = (int)(player->pos.x * minimap->tile_size.x + minimap->tile_size.x / 2);
-	point.y = (int)(player->pos.y * minimap->tile_size.y + minimap->tile_size.y / 2);
-	//printf("Point x: %d, y: %d\n", point.x, point.y);
-	draw_circle(img, point, 10, encode_rgb(255, 255, 255));
-	//printf("-_- angle: %f\n", player->angle);
-	//vector.p1 = point;
-	//vector.p2 = point2;
-	//draw_line(img, vector, 5, get_rgba(0,0,255,255));
-	raycaster(img, map, minimap, player);
-
-	/*dpoint = get_next_pos(50, player->angle - 45, dpoint);
-	point2.x = dpoint.x;
-	point2.y = dpoint.y;
-	vector.p1 = point;
-	vector.p2 = point2;
-	draw_line(img, vector, 2, get_rgba(0,255,0,255));
-
-	dpoint = get_next_pos(50, player->angle + 45, dpoint);
-	point2.x = dpoint.x;
-	point2.y = dpoint.y;
-	//vector.p1 = point;
-	vector.p2 = point2;
-	draw_line(img, vector, 2, get_rgba(0,255,0,255));
-
-	dpoint = get_next_pos(50, player->angle + 90, dpoint);
-	point2.x = dpoint.x;
-	point2.y = dpoint.y;
-	//vector.p1 = point;
-	vector.p2 = point2;
-	draw_line(img, vector, 2, get_rgba(0,255,0,255));*/
+	point.x = (int)(args->player->pos.x * args->minimap->tile_size.x + args->minimap->tile_size.x / 2);
+	point.y = (int)(args->player->pos.y * args->minimap->tile_size.y + args->minimap->tile_size.y / 2);
+	draw_circle(args->img, point, 10, encode_rgb(255, 255, 255));
+	raycaster(args->img, args);
 }

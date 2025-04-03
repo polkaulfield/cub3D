@@ -11,6 +11,6 @@
 
 t_player	*init_player(t_map *map);
 void	move_player(int key, t_player *player, double len, t_args *args);
-void	draw_player_minimap(t_player *player, t_minimap *minimap, t_map *map, mlx_image_t *img);
+void	render(t_args *args);
 
 #endif

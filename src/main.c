@@ -21,7 +21,7 @@ static void	game_loop(t_args *args)
 	tmp_img = args->img;
 	args->img = mlx_new_image(args->mlx, WIDTH, HEIGHT);
 	draw_minimap(args->img, args->minimap, args->map);
-	draw_player_minimap(args->player, args->minimap, args->map, args->img);
+	render(args);
 	mlx_image_to_window(args->mlx, args->img, 0, 0);
 	mlx_delete_image(args->mlx, tmp_img);
 }
