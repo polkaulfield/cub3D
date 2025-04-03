@@ -90,7 +90,6 @@ void	keys_hook(void* params)
 	t_args      *args;
 	t_player	*player;
 
-
 	args = (t_args *)params;
 	player = args->player;
 	if (mlx_is_key_down(args->mlx, MLX_KEY_ESCAPE))

@@ -26,53 +26,46 @@ static void	game_loop(t_args *args)
 	mlx_delete_image(args->mlx, tmp_img);
 }
 
-static void	keys_hook(void* params)
+int	key_checker(mlx_t *mlx)
 {
-	t_args      *args;
-	t_player	*player;
-	int flag = 0;
+	if (mlx_is_key_down(mlx, MLX_KEY_UP) || \
+		mlx_is_key_down(mlx, MLX_KEY_W) || \
+		mlx_is_key_down(mlx, MLX_KEY_S) || \
+		mlx_is_key_down(mlx, MLX_KEY_D) || \
+		mlx_is_key_down(mlx, MLX_KEY_A) || \
+		mlx_is_key_down(mlx, MLX_KEY_DOWN) || \
+		mlx_is_key_down(mlx, MLX_KEY_LEFT) || \
+		mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+		return (1);
+	return (0);
+}
+
+static void	keys_hook(void *params)
+{
+	t_args	*args;
+	int		flag;
 
 	args = (t_args *)params;
-	player = args->player;
+	flag = key_checker(args->mlx);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(args->mlx);
-	if (mlx_is_key_down(args->mlx, MLX_KEY_UP) || mlx_is_key_down(args->mlx, MLX_KEY_W))
-	{
+	if (mlx_is_key_down(args->mlx, MLX_KEY_UP) || \
+		mlx_is_key_down(args->mlx, MLX_KEY_W))
 		move_player(UP, args->player, 0.2, args);
-		flag = 1;
-	}
-	if (mlx_is_key_down(args->mlx,MLX_KEY_S))
-	{
+	if (mlx_is_key_down(args->mlx, MLX_KEY_S))
 		move_player(S, args->player, -0.2, args);
-		flag = 1;
-	}
-	if (mlx_is_key_down(args->mlx,MLX_KEY_D))
-	{
+	if (mlx_is_key_down(args->mlx, MLX_KEY_D))
 		move_player(D, args->player, 0.2, args);
-		flag = 1;
-	}
-	if (mlx_is_key_down(args->mlx,MLX_KEY_A))
-	{
+	if (mlx_is_key_down(args->mlx, MLX_KEY_A))
 		move_player(A, args->player, -0.2, args);
-		flag = 1;
-	}
 	if (mlx_is_key_down(args->mlx, MLX_KEY_DOWN))
-		move_player(DOWN, player, 2, args);
+		move_player(DOWN, args->player, 2, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_LEFT))
-	{
-		move_player(LEFT, player, 2, args);
-		flag = 1;
-	}
+		move_player(LEFT, args->player, 2, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_RIGHT))
-	{
-		move_player(RIGHT, player, 2, args);
-		flag = 1;
-	}
+		move_player(RIGHT, args->player, 2, args);
 	if (flag == 1)
-	{
 		game_loop(args);
-		flag = 0;
-	}
 }
 
 int	main(int argc, char **argv)
@@ -83,7 +76,6 @@ int	main(int argc, char **argv)
 	t_map		*map;
 
 	(void)argc;
-
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		error();

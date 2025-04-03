@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:02:01 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/01 22:03:52 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:16:18 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	move_player(int key, t_player *player, double len, t_args *args)
 		player->angle = add_angle(player->angle, -10);
 	else
 		return ;
-	if (dpoint.x != 0 && !is_grid_collision((int)dpoint.x, (int)dpoint.y, args->map))
+	if (dpoint.x != 0 && !is_grid_collision((int)roundf(dpoint.x), (int)roundf(dpoint.y), args->map))
 		player->pos = dpoint;
 }
 
