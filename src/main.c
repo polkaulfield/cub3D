@@ -11,16 +11,24 @@
 #include "../includes/errors.h"
 #include "../includes/tests.h"
 
-static void	game_loop(t_args *args)
+static void	game_loop(void *params)
 {
 	mlx_image_t	*tmp_img;
+	mlx_image_t	*tmp_minimap_img;
+	t_args		*args;
 
+	args = (t_args *)params;
 	tmp_img = args->img;
+	tmp_minimap_img = args->minimap->img;
 	args->img = mlx_new_image(args->mlx, WIDTH, HEIGHT);
-	draw_minimap(args->img, args->minimap, args->map);
+	args->minimap->img = mlx_new_image(args->mlx, WIDTH / 4, HEIGHT / 4);
+	draw_minimap(args);
 	render(args);
+
 	mlx_image_to_window(args->mlx, args->img, 0, 0);
+	mlx_image_to_window(args->mlx, args->minimap->img, 0, 0);
 	mlx_delete_image(args->mlx, tmp_img);
+	mlx_delete_image(args->mlx, tmp_minimap_img);
 }
 
 int	key_checker(mlx_t *mlx)
@@ -37,11 +45,12 @@ int	key_checker(mlx_t *mlx)
 	return (0);
 }
 
-static void	keys_hook(void *params)
+void	keys_hook(mlx_key_data_t keydata, void *params)
 {
 	t_args	*args;
 	int		flag;
 
+	(void)keydata;
 	args = (t_args *)params;
 	flag = key_checker(args->mlx);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_ESCAPE))
@@ -61,7 +70,7 @@ static void	keys_hook(void *params)
 		move_player(LEFT, args->player, 2, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_RIGHT))
 		move_player(RIGHT, args->player, 2, args);
-	if (flag == 1)
+	if (flag)
 		game_loop(args);
 }
 
@@ -80,11 +89,9 @@ int	main(int argc, char **argv)
 	init_galloc();
 	map = parser(argv[1]);
 	args = init_args(img, mlx, map);
-	//draw_stuff(args);
-	//draw_minimap(args->img, args->minimap, args->map);
 	game_loop(args);
-	mlx_image_to_window(args->mlx, args->img, 0, 0);
-	mlx_loop_hook(args->mlx, keys_hook, args);
+	//mlx_loop_hook(args->mlx, game_loop, args);
+	mlx_key_hook(args->mlx, keys_hook, args);
 	mlx_loop(args->mlx);
 	mlx_terminate(args->mlx);
 	terminate(EXIT_SUCCESS);

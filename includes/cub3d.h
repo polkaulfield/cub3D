@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:17:40 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/03 23:44:05 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/04 22:18:35 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 # include "../libs/MLX42/include/MLX42/MLX42.h"
 # include "structs.h"
 # ifndef MPI
-# define WIDTH 1920
-# define HEIGHT 1080
+#  define WIDTH 1920
+#  define HEIGHT 1080
 #  define MPI 3.141592
+#  define TWOPI 6.283184
 #  define FOV 1.047197551
 #  define HALF_FOV 0.523598776
-#  define CASTED_RAYS 1920
-#  define STEP_ANGLE FOV / WIDTH
+#  define CASTED_RAYS WIDTH
 #  define MAX_DEPTH 500
 #  define UP 0
 #  define DOWN 1

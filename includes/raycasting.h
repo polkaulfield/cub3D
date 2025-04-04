@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:06:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/04 00:19:12 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/04 22:17:49 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@
 # include "args.h"
 # include "structs.h"
 
-void	raycaster(mlx_image_t *img, t_args *args);
+void	raycaster(t_args *args);
 #endif

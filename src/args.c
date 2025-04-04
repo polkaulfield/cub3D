@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:12:09 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/30 19:14:56 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/04 23:01:34 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_args	*init_args(mlx_image_t *img, mlx_t *mlx, t_map *map)
 	args->img = img;
 	args->map = map;
 	args->player = init_player(map);
-	args->minimap = init_minimap(img, map);
+	args->minimap = init_minimap(mlx, img, map);
+	args->step_angle = FOV / img->width;
+	args->scale = (args->img->width * 2) / CASTED_RAYS;
 	return (args);
 }

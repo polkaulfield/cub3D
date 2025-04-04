@@ -45,8 +45,9 @@ typedef struct s_vector
 
 typedef struct s_minimap
 {
-	t_point	tile_size;
-	t_point	size;
+	t_point		tile_size;
+	t_point		size;
+	mlx_image_t	*img;
 }	t_minimap;
 
 typedef struct s_player
@@ -55,6 +56,7 @@ typedef struct s_player
 	double	fov;
 	double	half_fov;
 	double	angle;
+	double	start_angle;
 }	t_player;
 
 typedef struct s_args
@@ -64,8 +66,9 @@ typedef struct s_args
 	t_map		*map;
 	t_player	*player;
 	t_minimap	*minimap;
+	double		scale;
+	double		step_angle;
 
 }	t_args;
-
 
 #endif
