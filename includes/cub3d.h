@@ -20,11 +20,13 @@
 # include "../libs/MLX42/include/MLX42/MLX42.h"
 # include "structs.h"
 # ifndef MPI
+# define WIDTH 1920
+# define HEIGHT 1080
 #  define MPI 3.141592
 #  define FOV 1.047197551
 #  define HALF_FOV 0.523598776
-#  define CASTED_RAYS 600
-#  define STEP_ANGLE FOV / CASTED_RAYS
+#  define CASTED_RAYS 1920
+#  define STEP_ANGLE FOV / WIDTH
 #  define MAX_DEPTH 500
 #  define UP 0
 #  define DOWN 1

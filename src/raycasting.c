@@ -53,7 +53,7 @@ void	raycaster(mlx_image_t *img, t_args *args)
 				draw_line(img, vector, 1, encode_rgb(255, 0, 255));
 				break ;
 			}
-			depth += 1;
+			depth += 0.05;
 		}
 		ray++;
 		start_angle += STEP_ANGLE;

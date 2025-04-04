@@ -11,9 +11,6 @@
 #include "../includes/errors.h"
 #include "../includes/tests.h"
 
-#define WIDTH 1920
-#define HEIGHT 1080
-
 static void	game_loop(t_args *args)
 {
 	mlx_image_t	*tmp_img;
