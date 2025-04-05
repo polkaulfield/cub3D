@@ -17,5 +17,6 @@
 # include "args.h"
 # include "structs.h"
 
+void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta);
 void	raycaster(t_args *args);
 #endif

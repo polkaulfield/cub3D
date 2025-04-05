@@ -79,7 +79,7 @@ void	move_player(int key, t_player *player, double len, t_args *args)
 	else if (key == DOWN || key == S)
 		dpoint = get_next_pos(len, player->angle, player->pos);
 	else if (key == D || key == A)
-		dpoint = get_next_pos(len, player->angle + 0.2, player->pos);
+		dpoint = get_next_pos(len, player->angle + 1.5708, player->pos);
 	else if (key == RIGHT)
 		player->angle = add_angle(player->angle, 0.2);
 	else if (key == LEFT)

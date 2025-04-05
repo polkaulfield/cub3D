@@ -68,7 +68,7 @@ typedef struct s_args
 	t_minimap	*minimap;
 	double		scale;
 	double		step_angle;
-
+	mlx_texture_t	*texture[4];
 }	t_args;
 
 #endif
