@@ -21,7 +21,7 @@ t_minimap	*init_minimap(mlx_t *mlx, mlx_image_t *img, t_map *map)
 		return (NULL);
 	minimap->size.x = img->width / 4;
 	minimap->size.y = img->height / 4;
-	minimap->img = mlx_new_image(mlx, minimap->size.x, minimap->size.y);
+	img = mlx_new_image(mlx, minimap->size.x, minimap->size.y);
 	minimap->tile_size.x = minimap->size.x / map->width;
 	minimap->tile_size.y = minimap->size.y / map->height;
 	return (minimap);
@@ -35,7 +35,7 @@ void	draw_player_minimap(t_args *args)
 		+ args->minimap->tile_size.x / 2);
 	point.y = (int)(args->player->pos.y * args->minimap->tile_size.y \
 		+ args->minimap->tile_size.y / 2);
-	draw_circle(args->minimap->img, point, 10, encode_rgb(255, 255, 255));
+	draw_circle(args->img, point, 10, encode_rgb(255, 255, 255));
 }
 
 void	draw_minimap(t_args *args)
@@ -56,9 +56,9 @@ void	draw_minimap(t_args *args)
 			pos.x = cell.x * args->minimap->tile_size.x;
 			pos.y = cell.y * args->minimap->tile_size.y;
 			if (args->map->grid[(int)cell.x][(int)cell.y] == '1')
-				draw_rectangle(args->minimap->img, pos, args->minimap->tile_size, grey);
+				draw_rectangle(args->img, pos, args->minimap->tile_size, grey);
 			else
-				draw_rectangle(args->minimap->img, pos, args->minimap->tile_size, dgrey);
+				draw_rectangle(args->img, pos, args->minimap->tile_size, dgrey);
 			cell.x++;
 		}
 		cell.y++;
