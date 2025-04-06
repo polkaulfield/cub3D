@@ -111,7 +111,7 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta, dou
 	mlx_texture_t	*texture = args->texture[get_direction(args, depth, theta, wall_point)];
 	(void)theta;
 	x = 0;
-	draw__floor_ceiling(args, pos, size);
+	//draw__floor_ceiling(args, pos, size);
 	while (x < size.x)
 	{
 		y = 0;
@@ -122,6 +122,7 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta, dou
 			{
 				color = calc_color(texture, pos, size, y, x_static, depth);
 				mlx_put_pixel(args->img, pos.x + x, pos.y + y, color);
+
 			}
 			y++;
 		}
