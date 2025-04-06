@@ -4,36 +4,29 @@ CFLAGS	:=  -Wextra -Wall -Werror -Ofast -march=native -ffast-math #-fsanitize=ad
 LIBMLX	:= ./libs/MLX42
 LIBFT	:= ./libs/libft
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include -I $(LIBFT)
-LIBS	:= -L $(LIBFT) -lft $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS	:= ./src/main.c \
-			./src/color.c \
-			./src/args.c \
-			./src/errors.c \
-			./src/player.c \
-			./src/tests.c \
-			./src/minimap.c \
-			./src/raycasting.c \
-			./src/misc.c \
-			./src/drawing/circles.c \
-			./src/drawing/lines.c \
-			./src/drawing/rectangles.c \
-			./src/parser/init_map.c \
-			./src/parser/parser.c \
-			./src/parser/parser_checkers.c \
-			./src/parser/parser_file.c \
-			./src/parser/parser_map.c \
-			./src/parser/parser_map_refactor.c \
-			./src/parser/parser_map_struct.c \
-			./src/parser/parser_utils.c \
-			./src/galloc/galloc.c \
-			./src/galloc/galloc_utils.c \
-			./src/galloc/init_galloc.c \
-			./src/get_next_line/get_next_line.c \
-			./src/get_next_line/get_next_line_utils.c
+INCLUDE_DIR := ./include
+SRC_DIR := ./src
+LIBMLX_INC := $(LIBMLX)/include
+LIBMLX_LIB := $(LIBMLX)/build/libmlx42.a
+LIBFT_LIB := $(LIBFT)
+LIBFT_INC := $(LIBFT)/includes
 
+HEADERS	:= -I $(INCLUDE_DIR) -I $(LIBMLX_INC) -I $(LIBFT_INC)
+LIBS	:= -L $(LIBFT_LIB) -lft $(LIBMLX_LIB) -ldl -lglfw -pthread -lm
 
-OBJS	:= ${SRCS:.c=.o}
+SRC_MAIN_DIR := $(SRC_DIR)
+SRC_DRAWING_DIR := $(SRC_DIR)/drawing
+SRC_PARSER_DIR := $(SRC_DIR)/parser
+SRC_GALLOC_DIR := $(SRC_DIR)/galloc
+SRC_GNL_DIR := $(SRC_DIR)/get_next_line
+
+SRCS := $(wildcard $(SRC_MAIN_DIR)/*.c) \
+        $(wildcard $(SRC_DRAWING_DIR)/*.c) \
+        $(wildcard $(SRC_PARSER_DIR)/*.c) \
+        $(wildcard $(SRC_GALLOC_DIR)/*.c) \
+        $(wildcard $(SRC_GNL_DIR)/*.c)
+
+OBJS := ${SRCS:.c=.o}
 
 all: libmlx $(NAME)
 
@@ -44,7 +37,7 @@ libft:
 	@make -s -C $(LIBFT)
 
 %.o: %.c $(HEADERS) Makefile
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && //printf "Compiling: $(notdir $<)"
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
 $(NAME): libft $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
@@ -60,4 +53,4 @@ fclean: clean
 
 re: clean all
 
-.PHONY: all, clean, fclean, re, libmlx
+.PHONY: all clean fclean re libmlx

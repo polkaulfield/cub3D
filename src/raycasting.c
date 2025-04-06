@@ -203,7 +203,7 @@ void	raycaster(t_args *args)
 			if (args->map->grid[point.x][point.y] == '1')
 			{
 				raycast_3d(theta, ray, depth, args, point);
-				//draw_line(args->minimap->img, ray_vector, 1, encode_rgb(255, 0, 255));
+				draw_line(args->minimap->img, ray_vector, 1, encode_rgb(255, 0, 255));
 				break ;
 			}
 			depth += 0.2;
