@@ -126,7 +126,7 @@ int calc_color(mlx_texture_t *texture, t_point pos, t_point size, int y, int x, 
 void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta, double out_scale, double depth, t_point wall_point, int wall_height, t_vector ray_vector)
 {
 	int	x;
-	static int	x_static = 0;
+	static double	x_static = 0;
 	static int	last_texture = 0;
 	int	y;
 	int	color;
@@ -149,11 +149,11 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta, dou
 			y++;
 		}
 		x++;
+		//x_static += x * ((double)texture->width / ((double)size.y));
 	}
 	draw_ray_floor(args, pos, size);
-	//x_static += x * ((double)texture->width / (double)size.x);
-	x_static += x * ((double)texture->width / ((double)size.y));
-
+	x_static += ((double)texture->width / (double)size.y);
+	//printf("%f\n", x_static);
 	//printf("%i\n", (int)((double)texture->width / (double)size.x));
 	if (x_static >= (int)texture->width || last_texture != texture_direction)
 		x_static = 0;
@@ -178,7 +178,7 @@ void	raycast_3d(double theta, int ray, double depth, t_args *args, t_point wall_
 	clr = 255 / (1 + depth * depth * 0.0001);
 	(void)clr;
 	depth *= cos(args->player->angle - theta);
-	wall_height = 21000 / depth;
+	wall_height = 40000 / depth;
 	if (wall_height > (int)args->img->height)
 		wall_height = args->img->height;
 	rect_pos.x = ray * scale / 2;

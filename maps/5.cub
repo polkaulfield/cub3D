@@ -1,7 +1,7 @@
-WE textures/img_we.png
-NO textures/img_no.png
-SO textures/img_so.png
-EA textures/img_ea.png
+WE ./textures/backRoom2.png
+NO ./textures/backRoom.png
+SO ./textures/backRoom2.png
+EA ./textures/backRoom.png
 
 C 35,19,73
 F 15,6,40

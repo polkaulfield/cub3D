@@ -31,5 +31,7 @@ t_args	*init_args(mlx_image_t *img, mlx_t *mlx, t_map *map)
 	args->texture[EA] = add_galloc(mlx_load_png(map->texture[EA]));
 	args->texture[SO] = add_galloc(mlx_load_png(map->texture[SO]));
 	args->texture[WE] = add_galloc(mlx_load_png(map->texture[WE]));
+	args->ceiling = map->ceiling;
+	args->floor = map->floor;
 	return (args);
 }

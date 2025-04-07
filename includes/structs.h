@@ -69,6 +69,8 @@ typedef struct s_args
 	double		scale;
 	double		step_angle;
 	mlx_texture_t	*texture[4];
+	int			*ceiling;
+	int			*floor;
 }	t_args;
 
 #endif
