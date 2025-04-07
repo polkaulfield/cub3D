@@ -19,10 +19,7 @@ int	main(int argc, char **argv)
 	init_galloc();
 	map = parser(argv[1]);
 	args = init_args(img, mlx, map);
-	args->texture[NO] = add_galloc(mlx_load_png("./textures/img_no.png"));
-	args->texture[EA] = add_galloc(mlx_load_png("./textures/img_ea.png"));
-	args->texture[SO] = add_galloc(mlx_load_png("./textures/img_so.png"));
-	args->texture[WE] = add_galloc(mlx_load_png("./textures/img_we.png"));
+
 	game_loop(args);
 	mlx_loop_hook(args->mlx, keys_hook, args);
 	//mlx_key_hook(args->mlx, keys_hook, args);

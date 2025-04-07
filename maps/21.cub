@@ -1,10 +1,11 @@
 F 76,76,76
 C 99,99,99
 
-NO textures/general/cobblestone.xpm
-SO textures/general/cobblestone_01.xpm
-WE textures/general/mossy_cobblestone1.xpm
-EA textures/general/cobblestone_02.xpm
+WE textures/img_we.png
+NO textures/img_no.png
+SO textures/img_so.png
+EA textures/img_ea.png
+
 
 1111111111111111111
 10W1001001001000001
@@ -16,4 +17,3 @@ EA textures/general/cobblestone_02.xpm
 1111000000000001011
 1000000001000000001
 1111111111111111111
-

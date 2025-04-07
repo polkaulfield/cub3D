@@ -50,6 +50,7 @@ t_map	*parser(char *file)
 	map = init_map(file);
 	open_file(map);
 	read_file(map);
+	map_refactor(map);
 	map_parser(map);
 	check_player(map);
 	grid = map_replace(map->grid);

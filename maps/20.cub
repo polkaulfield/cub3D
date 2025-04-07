@@ -1,7 +1,8 @@
-NO textures/general/wet_sponge.xpm
-SO textures/general/wet_sponge.xpm
-WE textures/general/wet_sponge.xpm
-EA textures/general/wet_sponge.xpm
+WE textures/img_we.png
+NO textures/img_no.png
+SO textures/img_so.png
+EA textures/img_ea.png
+
 
 F 164,169,20
 C 153,204,255
@@ -27,4 +28,3 @@ C 153,204,255
 101010111011111111101
 1N1000001000000000001
 111111111111111111111
-

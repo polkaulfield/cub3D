@@ -1,8 +1,8 @@
+WE textures/img_we.png
+NO textures/img_no.png
+SO textures/img_so.png
+EA textures/img_ea.png
 
-NO textures/wall_1.xpm
-SO textures/wall_2.xpm
-WE textures/wall_3.xpm
-EA textures/wall_4.xpm
 
 F 184,113,39
 C 51,198,227
