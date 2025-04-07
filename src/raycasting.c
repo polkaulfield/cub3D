@@ -1,6 +1,7 @@
 #include "../includes/raycasting.h"
 
-static int	get_direction_grades(double theta)
+
+/*static int	get_direction_grades(double theta)
 {
 	//6.28
 	//printf("%f\n", theta);
@@ -12,13 +13,14 @@ static int	get_direction_grades(double theta)
 		return (0);
 	printf("Norte\n");
 	return (1);
-}
+}*/
 
 static int	get_direction_rad(t_point point, t_point wall_point, double theta)
 {
-	get_direction_grades(theta);//debug
+	(void)theta;
+	///get_direction_grades(theta);//debug
 	//printf("wall x:%i y:%i\n act x:%i y:%i\n", wall_point.x, wall_point.y, point.x, point.y);
-	if (wall_point.y < point.y && wall_point.x < point.x)
+	/*if (wall_point.y < point.y && wall_point.x < point.x)
 	{
 		if (get_direction_grades(theta))
 			return WE;
@@ -41,7 +43,7 @@ static int	get_direction_rad(t_point point, t_point wall_point, double theta)
 		if (get_direction_grades(theta))
 			return EA;
 		return NO;
-	}
+	}*/
 	if (wall_point.y > point.y)
 		return (SO);//S
 	else if (wall_point.y < point.y)
@@ -79,7 +81,7 @@ static int	get_direction(t_args *args, double depth, double theta, t_point	wall_
 		//wall_point = point;
 		depth -= 0.2;
 	}
-	printf("error\n");
+	printf("error  %f\n", depth);
 	return(0);
 }
 
@@ -111,7 +113,7 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta, dou
 	(void)theta;
 	x = 0;
 	//draw__floor_ceiling(args, pos, size);
-	draw_ray_ceiling(args, pos, size);
+	//draw_ray_ceiling(args, pos, size);
 	while (x < size.x)
 	{
 		y = 0;
@@ -127,7 +129,7 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta, dou
 		}
 		x++;
 	}
-	draw_ray_floor(args, pos, size);
+	//draw_ray_floor(args, pos, size);
 	//x_static += x * ((double)texture->width / (double)size.x);
 	x_static += x * ((double)texture->width / ((double)size.y));
 	(void)out_scale;
@@ -146,7 +148,6 @@ void	raycast_3d(double theta, int ray, double depth, t_args *args, t_point wall_
 	t_point		rect_size;
 	double		scale;
 
-	//printf("%i %i %i %i\n", (int)args->img->pixels[0], (int)args->img->pixels[1], (int)args->img->pixels[2], (int)args->img->pixels[3]);
 	//printf("tail_x:%i tail_y:%i\n", args->minimap->tile_size.x, args->minimap->tile_size.y);
 	scale = args->img->width * 2 / CASTED_RAYS;
 	//printf("%f\n", scale);
@@ -196,7 +197,7 @@ void	raycaster(t_args *args)
 	ray = 0;
 	theta = args->player->angle - HALF_FOV;
 	start_ray_vector(&ray_vector, args);
-	while (ray < CASTED_RAYS)
+	while (ray < CASTED_RAYS * 2)
 	{
 		depth = 0;
 		while (depth < MAX_DEPTH)

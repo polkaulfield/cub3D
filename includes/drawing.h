@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:06:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/03/30 20:35:09 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:03:13 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "color.h"
 
 # include "structs.h"
-
 void	draw_ray_floor(t_args *args, t_point pos, t_point size);
 void	draw_ray_ceiling(t_args *args, t_point pos, t_point size);
 

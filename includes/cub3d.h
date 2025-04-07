@@ -19,6 +19,7 @@
 # include "../libs/libft/libft.h"
 # include "../libs/MLX42/include/MLX42/MLX42.h"
 # include "structs.h"
+# include <string.h>
 # ifndef MPI
 #  define WIDTH 1920
 #  define HEIGHT 1080

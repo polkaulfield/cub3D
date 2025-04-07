@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/minimap.h"
+#include <string.h>
 
 t_minimap	*init_minimap(mlx_t *mlx, mlx_image_t *img, t_map *map)
 {
@@ -21,7 +22,7 @@ t_minimap	*init_minimap(mlx_t *mlx, mlx_image_t *img, t_map *map)
 		return (NULL);
 	minimap->size.x = img->width / 4;
 	minimap->size.y = img->height / 4;
-	minimap->img = mlx_new_image(mlx, minimap->size.x, minimap->size.y);
+	img = mlx_new_image(mlx, minimap->size.x, minimap->size.y);
 	minimap->tile_size.x = minimap->size.x / map->width;
 	minimap->tile_size.y = minimap->size.y / map->height;
 	return (minimap);
@@ -36,6 +37,24 @@ void	draw_player_minimap(t_args *args)
 	point.y = (int)(args->player->pos.y * args->minimap->tile_size.y \
 		+ args->minimap->tile_size.y / 2);
 	draw_circle(args->minimap->img, point, 10, encode_rgb(255, 255, 255));
+}
+
+void	put_map_on_img(mlx_image_t *img_map, mlx_image_t *img)
+{
+	unsigned int		x;
+	unsigned int		y;
+
+	y = 0;
+	while (y < img_map->height)
+	{
+		x = 0;
+		while (x < img_map->width)
+		{
+			memcpy(&img->pixels[(y * img->width + x) * 4], &img_map->pixels[(y * img_map->width + x) * 4], 4);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	draw_minimap(t_args *args)
@@ -65,3 +84,5 @@ void	draw_minimap(t_args *args)
 	}
 	draw_player_minimap(args);
 }
+
+

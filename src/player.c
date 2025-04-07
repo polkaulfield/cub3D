@@ -81,9 +81,9 @@ void	move_player(int key, t_player *player, double len, t_args *args)
 	else if (key == D || key == A)
 		dpoint = get_next_pos(len, player->angle + 1.5708, player->pos);
 	else if (key == RIGHT)
-		player->angle = add_angle(player->angle, 0.2);
+		player->angle = add_angle(player->angle, len);
 	else if (key == LEFT)
-		player->angle = add_angle(player->angle, -0.2);
+		player->angle = add_angle(player->angle, len);
 	else
 		return ;
 	if (dpoint.x != 0 && !is_grid_collision((int)roundf(dpoint.x), (int)roundf(dpoint.y), args->map))
