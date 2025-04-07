@@ -16,6 +16,7 @@
 # include "color.h"
 # include "args.h"
 # include "structs.h"
+# include "drawing.h"
 
 void	start_ray_vector(t_vector *vector, t_args *args);
 void	end_ray_vector(t_vector *vect, double theta, double depth);

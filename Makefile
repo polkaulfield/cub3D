@@ -18,6 +18,7 @@ SRCS	:= ./src/main.c \
 			./src/drawing/circles.c \
 			./src/drawing/lines.c \
 			./src/drawing/rectangles.c \
+			./src/drawing/ray.c \
 			./src/parser/init_map.c \
 			./src/parser/parser.c \
 			./src/parser/parser_checkers.c \
