@@ -1,60 +1,5 @@
 #include "../includes/raycasting.h"
-
-
-/*static int	get_direction_grades(double theta)
-{
-	//6.28
-	//printf("%f\n", theta);
-	if (theta > deg2rad(45) && theta < deg2rad(135))
-		return (0);
-	if (theta > deg2rad(135) && theta < deg2rad(225))
-		return (1);
-	if (theta > deg2rad(225) && theta < deg2rad(315))
-		return (0);
-	printf("Norte\n");
-	return (1);
-}*/
-
-/*static int	get_direction_rad(t_point point, t_point wall_point, double theta)
-{
-	(void)theta;
-	///get_direction_grades(theta);//debug
-	//printf("wall x:%i y:%i\n act x:%i y:%i\n", wall_point.x, wall_point.y, point.x, point.y);
-	*//*if (wall_point.y < point.y && wall_point.x < point.x)
-	{
-		if (get_direction_grades(theta))
-			return WE;
-		return NO;
-	}
-	else if (wall_point.y > point.y && wall_point.x > point.x)
-	{
-		if (get_direction_grades(theta))
-			return EA;
-		return SO;
-	}
-	else if (wall_point.y > point.y && wall_point.x < point.x)
-	{
-		if (get_direction_grades(theta))
-			return WE;
-		return SO;
-	}
-	else if (wall_point.y < point.y && wall_point.x > point.x)
-	{
-		if (get_direction_grades(theta))
-			return EA;
-		return NO;
-	}*//*
-	if (wall_point.y > point.y)
-		return (SO);//S
-	else if (wall_point.y < point.y)
-		return (NO);//N
-	else if (wall_point.x > point.x)
-		return (EA);//E
-	else if (wall_point.x < point.x)
-		return (WE);//W
-	printf("errro in rads\n");
-	return (0);
-}*/
+#include <fcntl.h>
 
 static int  get_texture_dir(t_vector *ray_vector, t_args *args)
 {
@@ -78,35 +23,6 @@ static int  get_texture_dir(t_vector *ray_vector, t_args *args)
     return(NO);
 }
 
-/*static int	get_direction(t_args *args, double depth, double theta, t_point	wall_point)
-{
-	t_point	point;
-	t_vector	ray_vector;
-
-	//t_point	aprox;
-
-	//t_point	wall_point;
-	//printf("wall x:%i y:%i\n", wall_point.x, wall_point.y);
-	start_ray_vector(&ray_vector, args);
-	while (depth > 0)
-	{
-		end_ray_vector(&ray_vector, theta, depth);
-		get_collision_coords(&point, &ray_vector, args);
-		if (args->map->grid[point.x][point.y] != '1')
-		{
-
-			//printf("adyacente x:%i y:%i\n\n\n", point.x, point.y);
-			return (get_direction_rad(point, wall_point, theta));
-			break ;
-		}
-		//printf("%c\n", args->map->grid[point.x][point.y]);
-		//wall_point = point;
-		depth -= 0.2;
-	}
-	printf("error  %f\n", depth);
-	return(0);
-}*/
-
 int calc_color(mlx_texture_t *texture, t_point pos, t_point size, int y, int x, double depth)
 {
 	int	index;
@@ -123,7 +39,7 @@ int calc_color(mlx_texture_t *texture, t_point pos, t_point size, int y, int x, 
 					texture->pixels[index + 3] / (1 + depth * depth * 0.0001)));
 }
 
-void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta, double out_scale, double depth, t_point wall_point, int wall_height, t_vector ray_vector)
+void	draw_ray_texture(t_args *args, t_point pos, t_point size, double depth, t_vector ray_vector)
 {
 	int	x;
 	static double	x_static = 0;
@@ -158,13 +74,9 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double theta, dou
 	if (x_static >= (int)texture->width || last_texture != texture_direction)
 		x_static = 0;
 	last_texture = texture_direction;
-	(void)out_scale;
-	(void)wall_height;
-	(void)wall_point;
-	(void)theta;
 }
 
-void	raycast_3d(double theta, int ray, double depth, t_args *args, t_point wall_point, t_vector ray_vector)
+void	raycast_3d(double theta, int ray, double depth, t_args *args, t_vector ray_vector)
 {
 	int			clr;
 	int			wall_height;
@@ -173,7 +85,7 @@ void	raycast_3d(double theta, int ray, double depth, t_args *args, t_point wall_
 	double		scale;
 
 	//printf("tail_x:%i tail_y:%i\n", args->minimap->tile_size.x, args->minimap->tile_size.y);
-	scale = args->img->width * 2 / CASTED_RAYS;
+	scale = (double)args->img->width * 2 / CASTED_RAYS;
 	//printf("%f\n", scale);
 	clr = 255 / (1 + depth * depth * 0.0001);
 	(void)clr;
@@ -185,17 +97,16 @@ void	raycast_3d(double theta, int ray, double depth, t_args *args, t_point wall_
 	rect_pos.y = (args->img->height / 2) - wall_height / 2;
 	rect_size.x = scale;
 	rect_size.y = wall_height;
-	(void)wall_point;
-	draw_ray_texture(args, rect_pos, rect_size, theta, scale, depth, wall_point, wall_height, ray_vector);
+	draw_ray_texture(args, rect_pos, rect_size, scale, ray_vector);
 	//draw_rectangle(args->img, rect_pos, rect_size, encode_rgb(clr, clr, clr));
 }
 
 void	start_ray_vector(t_vector *vector, t_args *args)
 {
-	vector->p1.x = (int)(args->player->pos.x * args->minimap->tile_size.x \
-		+ args->minimap->tile_size.x / 2);
-	vector->p1.y = (int)(args->player->pos.y * args->minimap->tile_size.y \
-		+ args->minimap->tile_size.y / 2);
+	vector->p1.x = (int)roundf(args->player->pos.x * args->minimap->tile_size.x \
+		+ (double)args->minimap->tile_size.x / 2);
+	vector->p1.y = (int)roundf(args->player->pos.y * args->minimap->tile_size.y \
+		+ (double)args->minimap->tile_size.y / 2);
 }
 
 void	end_ray_vector(t_vector *vect, double theta, double depth)
@@ -230,7 +141,7 @@ void	raycaster(t_args *args)
 			get_collision_coords(&point, &ray_vector, args);
 			if (args->map->grid[point.x][point.y] == '1')
 			{
-				raycast_3d(theta, ray, depth, args, point, ray_vector);
+				raycast_3d(theta, ray, depth, args, ray_vector);
 				draw_line(args->minimap->img, ray_vector, 1, encode_rgb(255, 0, 255));
 				break ;
 			}
