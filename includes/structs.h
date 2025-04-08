@@ -71,6 +71,7 @@ typedef struct s_args
 	mlx_texture_t	*texture[4];
 	int			*ceiling;
 	int			*floor;
+	int			ray;
 }	t_args;
 
 #endif
