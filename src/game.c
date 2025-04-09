@@ -84,9 +84,9 @@ void	keys_hook(void *params)
 	if (mlx_is_key_down(args->mlx, MLX_KEY_A))
 		move_player(A, args->player, -0.1, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_LEFT))
-		move_player(LEFT, args->player, -00.1, args);
+		move_player(LEFT, args->player, -0.1, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_RIGHT))
-		move_player(RIGHT, args->player, 00.1, args);
+		move_player(RIGHT, args->player, 0.1, args);
 	if (key_checker(args->mlx))
 		game_loop(args);
 }

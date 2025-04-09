@@ -12,6 +12,18 @@
 
 #include "../../includes/player.h"
 
+int	is_grid_collision(int x, int y, t_map *map)
+{
+	if (y >= 1 && x >= 1)
+	{
+		if (map->grid[x][y] == '1')
+			return (1);
+	}
+	else
+		return (1);
+	return (0);
+}
+
 t_dpoint	get_next_pos(float h, float angle, t_dpoint pos)
 {
 	pos.y += cos(angle) * h;

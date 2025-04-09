@@ -18,10 +18,10 @@
 # include "minimap.h"
 # include "misc.h"
 # include "raycasting.h"
-
 # include "structs.h"
 
 t_player	*init_player(t_map *map);
 void		move_player(int key, t_player *player, float len, t_args *args);
+int			is_grid_collision(int x, int y, t_map *map);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "../../includes/raycasting.h"
 
-static int	get_texture_dir(t_dvector *ray_vector, t_args *args)
+int	get_texture_dir(t_dvector *ray_vector, t_args *args)
 {
 	t_point	point;
 
