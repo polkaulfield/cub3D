@@ -3,22 +3,21 @@
 static int  get_texture_dir(t_dvector *ray_vector, t_args *args)
 {
     t_point point;
-    return(NO);
-    //printf("x:%f y:%f\n", ray_vector->p2.x, ray_vector->p2.y);
-    point.x = (int)roundf(ray_vector->p2.x + 1);
+
+    point.x = (int)roundf(ray_vector->p2.x + 0.001);
     point.y = (int)roundf(ray_vector->p2.y);
     if (args->map->grid[point.x][point.y] == '0')
         return (WE);
     point.x = (int)roundf(ray_vector->p2.x);
-    point.y = (int)roundf(ray_vector->p2.y + 1);
+    point.y = (int)roundf(ray_vector->p2.y + 0.001);
     if (args->map->grid[point.x][point.y] == '0')
         return (NO);
-    point.x = (int)roundf(ray_vector->p2.x - 1);
+    point.x = (int)roundf(ray_vector->p2.x - 0.001);
     point.y = (int)roundf(ray_vector->p2.y);
     if (args->map->grid[point.x][point.y] == '0')
         return (EA);
     point.x = (int)roundf(ray_vector->p2.x);
-    point.y = (int)roundf(ray_vector->p2.y - 1);
+    point.y = (int)roundf(ray_vector->p2.y - 0.001);
     if (args->map->grid[point.x][point.y] == '0')
         return (SO);
     return(NO);
@@ -43,12 +42,16 @@ int calc_color(mlx_texture_t *texture, t_point pos, t_point size, int y, int x, 
 void	draw_ray_texture(t_args *args, t_point pos, t_point size, double depth, t_dvector ray_vector)
 {
 	int	x;
-	double	x_static = 0;
 	int	y;
+  double  x_2;
 	int	color;
-	int	texture_direction = get_texture_dir(&ray_vector, args);
-	mlx_texture_t	*texture = args->texture[texture_direction];
-	x = 0;
+	int	texture_direction;
+	mlx_texture_t	*texture;
+	
+  x = 0;
+  x_2 = 0;
+	texture_direction = get_texture_dir(&ray_vector, args);
+  texture = args->texture[texture_direction];
 	draw_ray_ceiling(args, pos, size);
 	while (x < size.x)
 	{
@@ -56,12 +59,12 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double depth, t_d
 		while (y < size.y)
 		{
 			if (texture_direction == NO || texture_direction == SO)
-				x_static = ray_vector.p2.x + 1.0 - ray_vector.p2.x * texture->width;
+				x_2 = ray_vector.p2.x - ray_vector.p2.x * texture->width;
 			else
-				x_static = ray_vector.p2.y + 1.0 - ray_vector.p2.y * texture->width;
+				x_2 = ray_vector.p2.y - ray_vector.p2.y * texture->width;
 			if (pos.x + x < (int)args->img->width && pos.y < (int)args->img->height)
 			{
-				color = calc_color(texture, pos, size, y, x_static, depth);
+				color = calc_color(texture, pos, size, y, x_2, depth);
 				mlx_put_pixel(args->img, pos.x + x, pos.y + y, color);
 			}
 			y++;
@@ -85,7 +88,7 @@ void	raycast_3d(double theta, int ray, double depth, t_args *args, t_dvector ray
 	(void)clr;
   	(void)theta;
 	depth *= cos(args->player->angle - theta);
-	wall_height = args->img->width / depth;
+	wall_height = roundf(args->img->width / depth);
 	if (wall_height > (int)args->img->height)
 		wall_height = args->img->height;
 	rect_pos.x = ray * scale / 2;
@@ -156,7 +159,7 @@ void	raycaster(t_args *args)
 				draw_line(args->minimap->img, get_ray_minimap(&ray_vector, args), 1, encode_rgb(255, 0, 255));
 				break ;
 			}
-			depth += 0.02;
+			depth += 0.001;
 		}
 		ray++;
 		args->ray++;
