@@ -17,6 +17,7 @@
 		"color.h": "c",
 		"keys.h": "c",
 		"player.h": "c",
-		"raycasting.h": "c"
+		"raycasting.h": "c",
+		"misc.h": "c"
 	}
 }

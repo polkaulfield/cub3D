@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/10 00:46:23 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/10 00:46:31 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PLAYER_H
 # define PLAYER_H
 # include "cub3d.h"
@@ -6,11 +18,10 @@
 # include "minimap.h"
 # include "misc.h"
 # include "raycasting.h"
-
 # include "structs.h"
 
 t_player	*init_player(t_map *map);
-void	move_player(int key, t_player *player, double len, t_args *args);
-void	render(t_args *args);
+void		move_player(int key, t_player *player, float len, t_args *args);
+int			is_grid_collision(int x, int y, t_map *map);
 
 #endif

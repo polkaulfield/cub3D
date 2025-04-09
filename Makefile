@@ -1,8 +1,9 @@
-CC		:= gcc
-NAME	:= cub3d
-CFLAGS	:=  -Wextra -Wall -Werror -Ofast -march=native -ffast-math #-fsanitize=address
-LIBMLX	:= ./libs/MLX42
-LIBFT	:= ./libs/libft
+CC      := clang
+NAME    := cub3d
+CFLAGS  := -Wall -Werror -Wextra -O3 -ffast-math
+
+LIBMLX  := ./libs/MLX42
+LIBFT   := ./libs/libft
 
 INCLUDE_DIR := ./include
 SRC_DIR := ./src
@@ -11,22 +12,11 @@ LIBMLX_LIB := $(LIBMLX)/build/libmlx42.a
 LIBFT_LIB := $(LIBFT)
 LIBFT_INC := $(LIBFT)/includes
 
-HEADERS	:= -I $(INCLUDE_DIR) -I $(LIBMLX_INC) -I $(LIBFT_INC)
-LIBS	:= -L $(LIBFT_LIB) -lft $(LIBMLX_LIB) -ldl -lglfw -pthread -lm
+HEADERS := -I $(INCLUDE_DIR) -I $(LIBMLX_INC) -I $(LIBFT_INC)
+LIBS    := -L $(LIBFT_LIB) -lft $(LIBMLX_LIB) -ldl -lglfw -pthread -lm
 
-SRC_MAIN_DIR := $(SRC_DIR)
-SRC_DRAWING_DIR := $(SRC_DIR)/drawing
-SRC_PARSER_DIR := $(SRC_DIR)/parser
-SRC_GALLOC_DIR := $(SRC_DIR)/galloc
-SRC_GNL_DIR := $(SRC_DIR)/get_next_line
-
-SRCS := $(wildcard $(SRC_MAIN_DIR)/*.c) \
-        $(wildcard $(SRC_DRAWING_DIR)/*.c) \
-        $(wildcard $(SRC_PARSER_DIR)/*.c) \
-        $(wildcard $(SRC_GALLOC_DIR)/*.c) \
-        $(wildcard $(SRC_GNL_DIR)/*.c)
-
-OBJS := ${SRCS:.c=.o}
+SRCS := $(shell find $(SRC_DIR) -type f -name '*.c')
+OBJS := $(SRCS:.c=.o)
 
 all: libmlx $(NAME)
 
@@ -37,7 +27,7 @@ libft:
 	@make -s -C $(LIBFT)
 
 %.o: %.c $(HEADERS) Makefile
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
 
 $(NAME): libft $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
@@ -51,6 +41,6 @@ fclean: clean
 	@rm -rf $(NAME)
 	@make -s -C $(LIBFT) fclean
 
-re: clean all
+re: fclean all
 
-.PHONY: all clean fclean re libmlx
+.PHONY: all clean fclean re libmlx libft

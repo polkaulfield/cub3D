@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 21:28:48 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/10 00:48:33 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/game.h"
+#include "../includes/player.h"
 
 static void	put_map_on_img(mlx_image_t *img_map, mlx_image_t *img)
 {
@@ -11,7 +24,8 @@ static void	put_map_on_img(mlx_image_t *img_map, mlx_image_t *img)
 		x = 0;
 		while (x < img_map->width)
 		{
-			memcpy(&img->pixels[(y * img->width + x) * 4], &img_map->pixels[(y * img_map->width + x) * 4], 4);
+			memcpy(&img->pixels[(y * img->width + x) * 4], \
+				&img_map->pixels[(y * img_map->width + x) * 4], 4);
 			x++;
 		}
 		y++;
@@ -30,7 +44,7 @@ void	game_loop(void *params)
 	args->img = mlx_new_image(args->mlx, WIDTH, HEIGHT);
 	args->minimap->img = mlx_new_image(args->mlx, WIDTH / 4, HEIGHT / 4);
 	draw_minimap(args);
-	render(args);
+	raycaster(args);
 	put_map_on_img(args->minimap->img, args->img);
 	mlx_image_to_window(args->mlx, args->img, 0, 0);
 	mlx_delete_image(args->mlx, tmp_img);
@@ -54,17 +68,14 @@ int	key_checker(mlx_t *mlx)
 void	keys_hook(void *params)
 {
 	t_args	*args;
-	int		flag;
 
 	args = (t_args *)params;
-	flag = key_checker(args->mlx);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_ESCAPE))
 	{
 		mlx_close_window(args->mlx);
 		terminate(1);
 	}
-	if (mlx_is_key_down(args->mlx, MLX_KEY_UP) || \
-		mlx_is_key_down(args->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(args->mlx, MLX_KEY_W))
 		move_player(UP, args->player, 0.1, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_S))
 		move_player(S, args->player, -0.1, args);
@@ -72,12 +83,10 @@ void	keys_hook(void *params)
 		move_player(D, args->player, 0.1, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_A))
 		move_player(A, args->player, -0.1, args);
-	if (mlx_is_key_down(args->mlx, MLX_KEY_DOWN))
-		move_player(DOWN, args->player, -0.1, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_LEFT))
-		move_player(LEFT, args->player, -00.1, args);
+		move_player(LEFT, args->player, -0.1, args);
 	if (mlx_is_key_down(args->mlx, MLX_KEY_RIGHT))
-		move_player(RIGHT, args->player, 00.1, args);
-	if (flag)
+		move_player(RIGHT, args->player, 0.1, args);
+	if (key_checker(args->mlx))
 		game_loop(args);
 }

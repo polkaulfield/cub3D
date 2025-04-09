@@ -1,17 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   galloc.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/10 00:43:35 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/10 00:43:59 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GALLOC_H
 # define GALLOC_H
-
-#include <stdlib.h>
-#include <stdio.h>
-#include "../libs/libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include "../libs/libft/libft.h"
 
 typedef struct s_galloc
 {
 	void			*mem;
 	struct s_galloc	*next;
 	struct s_galloc	*start;
-}  t_galloc;
-
+}	t_galloc;
 
 t_galloc	*init_galloc(void);
 void		terminate(int exit_value);
@@ -21,6 +31,6 @@ void		gfree(void *ptr);
 void		*galloc(size_t size);
 void		*add_galloc_arr(void **mem);
 void		gfree_arr(void **arr);
-void	terminate_error(char *text_error);
+void		terminate_error(char *text_error);
 
 #endif

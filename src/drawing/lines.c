@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:06:41 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/03 23:41:34 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/09 21:30:18 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	draw_line_x(mlx_image_t *img, t_vector vector, int width, int color)
 	p3.y = p1.y;
 	while ((!neg && p3.y < p2.y) || (neg && p3.y > p2.y))
 	{
-		//printf("printing pixel Y!\n");
 		p3.x = (p3.y - p1.y) * (p2.x - p1.x) / (p2.y - p1.y) + p1.x;
 		draw_square(img, p3, width, color);
 		if (neg)
