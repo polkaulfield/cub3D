@@ -33,10 +33,10 @@ int calc_color(mlx_texture_t *texture, t_point pos, t_point size, int y, int x, 
 	scale = (double)texture->height / (double)size.y;
 
 	index = (((int)(y * scale)) * texture->width + x) * 4;
-	return(	get_rgba(texture->pixels[index + 0] / (1 + depth * depth * 0.0001),
-					texture->pixels[index + 1] / (1 + depth * depth * 0.0001),
-					texture->pixels[index + 2] / (1 + depth * depth * 0.0001),
-					texture->pixels[index + 3] / (1 + depth * depth * 0.0001)));
+	return(	get_rgba(texture->pixels[index + 0] / (1 + depth * depth * 0.01),
+					texture->pixels[index + 1] / (1 + depth * depth * 0.01),
+					texture->pixels[index + 2] / (1 + depth * depth * 0.01),
+					texture->pixels[index + 3] / (1 + depth * depth * 0.01)));
 }
 
 void	draw_ray_texture(t_args *args, t_point pos, t_point size, double depth, t_dvector ray_vector)
@@ -47,7 +47,7 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double depth, t_d
 	int	color;
 	int	texture_direction;
 	mlx_texture_t	*texture;
-	
+
   x = 0;
   x_2 = 0;
 	texture_direction = get_texture_dir(&ray_vector, args);
@@ -56,6 +56,8 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double depth, t_d
 	while (x < size.x)
 	{
 		y = 0;
+		if (pos.y + y < 0)
+			y = -pos.y;
 		while (y < size.y)
 		{
 			if (texture_direction == NO || texture_direction == SO)
@@ -65,7 +67,10 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double depth, t_d
 			if (pos.x + x < (int)args->img->width && pos.y < (int)args->img->height)
 			{
 				color = calc_color(texture, pos, size, y, x_2, depth);
-				mlx_put_pixel(args->img, pos.x + x, pos.y + y, color);
+				if (y + pos.y > (int)args->img->height)
+					break ;
+				if (y + pos.y < (int)args->img->height)
+					mlx_put_pixel(args->img, pos.x + x, pos.y + y, color);
 			}
 			y++;
 		}
@@ -89,10 +94,14 @@ void	raycast_3d(double theta, int ray, double depth, t_args *args, t_dvector ray
   	(void)theta;
 	depth *= cos(args->player->angle - theta);
 	wall_height = roundf(args->img->width / depth);
-	if (wall_height > (int)args->img->height)
-		wall_height = args->img->height;
+	//if (wall_height > (int)args->img->height)
+	//	wall_height = args->img->height;
 	rect_pos.x = ray * scale / 2;
-	rect_pos.y = (args->img->height / 2) - wall_height / 2;
+	if (wall_height > (int)args->img->height)
+		rect_pos.y = (args->img->height / 2) - wall_height / 2;
+	else
+		rect_pos.y = (args->img->height / 2) - wall_height / 2;
+	//printf("%i\n", rect_pos.y);
 	rect_size.x = scale;
 	rect_size.y = wall_height;
   	(void)ray_vector;
