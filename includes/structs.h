@@ -65,7 +65,10 @@ typedef struct	s_raycast
 	double		depth;
 	int			ray;
 	int			texture_dir;
+	mlx_texture_t	*texture;
 	t_dvector	ray_vector;
+	t_point		pos;
+	t_point		size;
 }	t_raycast;
 typedef struct s_args
 {
