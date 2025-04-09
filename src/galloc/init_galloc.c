@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:26:40 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/09 21:31:45 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:25:47 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ t_galloc	*init_galloc(void)
 	}
 	l_galloc = malloc(sizeof(t_galloc));
 	if (!l_galloc)
-	{
-		ft_putendl_fd("", 2);
 		exit(EXIT_FAILURE);
-	}
 	l_galloc->next = NULL;
 	l_galloc->mem = NULL;
 	l_galloc->start = l_galloc;

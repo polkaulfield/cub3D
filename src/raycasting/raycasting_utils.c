@@ -6,11 +6,11 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:22:15 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/09 21:22:15 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:43:00 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/raycasting.h"
+#include "../../includes/raycasting.h"
 
 void	start_ray_vector(t_dvector *vector, t_args *args)
 {

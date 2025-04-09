@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/10 00:46:36 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/10 00:47:34 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
 # include "../libs/MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_map
@@ -17,7 +28,6 @@ typedef struct s_map
 	int		floor[3];
 	int		ceiling[3];
 }	t_map;
-
 
 typedef struct s_dpoint
 {
@@ -53,36 +63,37 @@ typedef struct s_minimap
 typedef struct s_player
 {
 	t_dpoint	pos;
-	float	fov;
-	float	half_fov;
-	float	angle;
-	float	start_angle;
+	float		fov;
+	float		half_fov;
+	float		angle;
+	float		start_angle;
 }	t_player;
 
-typedef struct	s_raycast
+typedef struct s_raycast
 {
-	float		theta;
-	float		depth;
-	int			ray;
-	int			texture_dir;
+	float			theta;
+	float			depth;
+	int				ray;
+	int				texture_dir;
 	mlx_texture_t	*texture;
-	t_dvector	ray_vector;
-	t_point		pos;
-	t_point		size;
+	t_dvector		ray_vector;
+	t_point			pos;
+	t_point			size;
 }	t_raycast;
+
 typedef struct s_args
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_map		*map;
-	t_player	*player;
-	t_minimap	*minimap;
-	float		scale;
-	float		step_angle;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	t_map			*map;
+	t_player		*player;
+	t_minimap		*minimap;
+	float			scale;
+	float			step_angle;
 	mlx_texture_t	*texture[4];
-	int			*ceiling;
-	int			*floor;
-	t_raycast	raycast;
+	int				*ceiling;
+	int				*floor;
+	t_raycast		raycast;
 }	t_args;
 
 #endif

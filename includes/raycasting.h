@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:06:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/07 18:03:30 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:45:30 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	start_ray_vector(t_dvector *vector, t_args *args);
 void	end_ray_vector(t_dvector *vect, t_raycast *raycast);
 void	get_collision_coords(t_point *point, t_dvector *ray_vector);
 
-void	draw_ray_texture(t_args *args, t_raycast *raycast, t_dvector ray_vector);
+void	draw_ray_texture(t_args *args, t_raycast *raycast, t_dvector ray);
 void	raycaster(t_args *args);
 #endif

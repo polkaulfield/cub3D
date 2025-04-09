@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:25:06 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/09 21:25:53 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:35:04 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_ray_ceiling(t_args *args, t_point pos, t_point size)
 	y = -1;
 	while (++y < pos.y)
 	{
-		depth = (1 + y * y * 0.000005);
+		depth = 1 + y * y * 0.00001;
 		color = get_rgba(args->ceiling[0] / depth, args->ceiling[1] \
 			/ depth, args->ceiling[2] / depth, 255);
 		if (pos.x + 1 < (int)args->img->width && y + 3 < (int)args->img->height)
@@ -63,7 +63,7 @@ void	draw_ray_floor(t_args *args, t_point pos, t_point size)
 	{
 		color = get_rgba(args->ceiling[0] / depth, args->ceiling[1] \
 			/ depth, args->ceiling[2] / depth, 255);
-		depth = (1 + (args->img->height - y) * (args->img->height - y) * 0.000005);
+		depth = 1 + (args->img->height - y) * (args->img->height - y) * 0.00001;
 		if (pos.x + 1 < (int)args->img->width && y + 3 < (int)args->img->height)
 		{
 			draw_multiple_pixels(args->img, pos.x, y, color);
@@ -77,7 +77,6 @@ void	draw_ray_floor(t_args *args, t_point pos, t_point size)
 		}
 	}
 }
-
 
 void	draw_ceiling(t_args *args, int color)
 {

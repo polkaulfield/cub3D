@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:16:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/09 21:30:44 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:28:54 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,9 @@ void	put_map_on_img(mlx_image_t *img_map, mlx_image_t *img)
 
 void	draw_minimap(t_args *args)
 {
-	int		grey;
-	int		dgrey;
 	t_point	cell;
 	t_point	pos;
 
-	grey = encode_rgb(192, 191, 191);
-	dgrey = encode_rgb(65, 65, 65);
 	cell.y = 0;
 	while (cell.y < args->map->height)
 	{
@@ -77,10 +73,10 @@ void	draw_minimap(t_args *args)
 			pos.y = cell.y * args->minimap->tile_size.y;
 			if (args->map->grid[(int)cell.x][(int)cell.y] == '1')
 				draw_rectangle(args->minimap->img, pos, \
-					args->minimap->tile_size, grey);
+					args->minimap->tile_size, get_rgba(192, 191, 191, 255));
 			else
 				draw_rectangle(args->minimap->img, pos, \
-					args->minimap->tile_size, dgrey);
+					args->minimap->tile_size, get_rgba(65, 65, 65, 255));
 			cell.x++;
 		}
 		cell.y++;
