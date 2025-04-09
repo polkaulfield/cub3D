@@ -1,5 +1,6 @@
 #include "../../includes/drawing.h"
 
+/*
 void	draw_ray_ceiling(t_args *args, t_point pos, t_point size)
 {
 	int		x;
@@ -53,4 +54,30 @@ void	draw_ray_floor(t_args *args, t_point pos, t_point size)
 			//mlx_put_pixel(args->img, x + pos.x, y, get_rgba(255,255,255,255));
 		}
 	}
+}
+*/
+void	draw_ceiling(t_args *args, int color)
+{
+  t_point start;
+  t_point size;
+
+  start.x = 0;
+  start.y = 0;
+
+  size.x = args->img->width;
+  size.y = args->img->height / 2;
+  draw_rectangle(args->img, start, size, color);
+}
+
+void	draw_floor(t_args *args, int color)
+{
+  t_point start;
+  t_point size;
+
+  start.x = 0;
+  start.y = args->img->height / 2;
+
+  size.x = args->img->width;
+  size.y = args->img->height / 2;
+  draw_rectangle(args->img, start, size, color);
 }

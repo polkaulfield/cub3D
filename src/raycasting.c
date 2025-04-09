@@ -4,41 +4,41 @@ static int  get_texture_dir(t_dvector *ray_vector, t_args *args)
 {
     t_point point;
 
-    point.x = (int)roundf(ray_vector->p2.x + 0.001);
+    point.x = (int)roundf(ray_vector->p2.x + DIR_CHECK_STEP);
     point.y = (int)roundf(ray_vector->p2.y);
-    if (args->map->grid[point.x][point.y] == '0')
+    if (args->map->grid[point.x][point.y] != '1')
         return (WE);
     point.x = (int)roundf(ray_vector->p2.x);
-    point.y = (int)roundf(ray_vector->p2.y + 0.001);
-    if (args->map->grid[point.x][point.y] == '0')
+    point.y = (int)roundf(ray_vector->p2.y + DIR_CHECK_STEP);
+    if (args->map->grid[point.x][point.y] != '1')
         return (NO);
-    point.x = (int)roundf(ray_vector->p2.x - 0.001);
+    point.x = (int)roundf(ray_vector->p2.x - DIR_CHECK_STEP);
     point.y = (int)roundf(ray_vector->p2.y);
-    if (args->map->grid[point.x][point.y] == '0')
+    if (args->map->grid[point.x][point.y] != '1')
         return (EA);
     point.x = (int)roundf(ray_vector->p2.x);
-    point.y = (int)roundf(ray_vector->p2.y - 0.001);
-    if (args->map->grid[point.x][point.y] == '0')
+    point.y = (int)roundf(ray_vector->p2.y - DIR_CHECK_STEP);
+    if (args->map->grid[point.x][point.y] != '1')
         return (SO);
     return(NO);
 }
-
 int calc_color(mlx_texture_t *texture, t_point pos, t_point size, int y, int x, double depth)
 {
 	int	index;
 	double	scale;
+  double  pixel_divider;
 	(void)x;
 	(void)pos;
 
 	scale = (double)texture->height / (double)size.y;
-
 	index = (((int)(y * scale)) * texture->width + x) * 4;
+  pixel_divider = 1 + depth * depth * 0.01;
 	if (index < 0)
 		index = 0;
-	return(	get_rgba(texture->pixels[index + 0] / (1 + depth * depth * 0.01),
-					texture->pixels[index + 1] / (1 + depth * depth * 0.01),
-					texture->pixels[index + 2] / (1 + depth * depth * 0.01),
-					texture->pixels[index + 3] / (1 + depth * depth * 0.01)));
+	return(	get_rgba(texture->pixels[index + 0] / pixel_divider,
+					texture->pixels[index + 1] / pixel_divider,
+					texture->pixels[index + 2] / pixel_divider,
+					texture->pixels[index + 3] / pixel_divider));
 	printf("%i\n", texture->pixels[0]);
 }
 
@@ -54,7 +54,7 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, t_dvector ray_vec
 	x_2 = 0;
 	args->raycast.texture_dir = get_texture_dir(&ray_vector, args);
 	texture = args->texture[args->raycast.texture_dir];
-	draw_ray_ceiling(args, pos, size);
+  printf("%i\n", args->raycast.texture_dir);
 	while (x < size.x)
 	{
 		y = 0;
@@ -78,7 +78,6 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, t_dvector ray_vec
 		}
 		x++;
 	}
-	draw_ray_floor(args, pos, size);
 }
 
 void	raycast_3d(t_args *args, t_dvector ray_vector)
@@ -125,15 +124,19 @@ void	get_collision_coords(t_point *point, t_dvector *ray_vector)
 t_vector get_ray_minimap(t_dvector *ray_vector, t_args *args)
 {
 	t_vector  vector_minimap;
+  double    div_tile_x;
+  double    div_tile_y;
 
+  div_tile_x = (double)args->minimap->tile_size.x / 2;
+  div_tile_y = (double)args->minimap->tile_size.y / 2;
 	vector_minimap.p1.x = (int)roundf(args->player->pos.x * args->minimap->tile_size.x \
-		+ (double)args->minimap->tile_size.x / 2);
+		+ div_tile_x);
 	vector_minimap.p1.y = (int)roundf(args->player->pos.y * args->minimap->tile_size.y \
-		+ (double)args->minimap->tile_size.y / 2);
+		+ div_tile_y);
 	vector_minimap.p2.x = (int)roundf(ray_vector->p2.x * args->minimap->tile_size.x \
-    	+ (double)args->minimap->tile_size.x / 2);
+    	+ div_tile_x);
 	vector_minimap.p2.y = (int)roundf(ray_vector->p2.y * args->minimap->tile_size.y \
-		+ (double)args->minimap->tile_size.y / 2);
+		+ div_tile_y);
 	return (vector_minimap);
 }
 
@@ -150,6 +153,8 @@ void	raycaster(t_args *args)
 	t_point		point;
 	t_raycast	*raycast;
 
+	draw_ceiling(args, get_rgba(0, 0, 128, 255));
+	draw_floor(args, get_rgba(0, 128, 0, 255));
 	init_raycast(args, &args->raycast);
 	raycast = &args->raycast;
 	start_ray_vector(&raycast->ray_vector, args);
@@ -166,7 +171,7 @@ void	raycaster(t_args *args)
 				draw_line(args->minimap->img, get_ray_minimap(&raycast->ray_vector, args), 1, encode_rgb(255, 0, 255));
 				break ;
 			}
-			raycast->depth += 0.001;
+			raycast->depth += DIR_CHECK_STEP;
 		}
 		raycast->ray++;
 		raycast->theta += args->step_angle;

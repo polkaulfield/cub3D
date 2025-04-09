@@ -29,6 +29,7 @@
 #  define HALF_FOV 0.523598776
 #  define CASTED_RAYS WIDTH
 #  define MAX_DEPTH 500
+#  define DIR_CHECK_STEP 0.01
 #  define UP 0
 #  define DOWN 1
 #  define LEFT 2
