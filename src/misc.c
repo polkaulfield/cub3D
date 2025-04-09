@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   misc.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 21:19:09 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/09 21:19:14 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/misc.h"
 
-double deg2rad(double angle)
+double	deg2rad(double angle)
 {
-	return(angle * MPI / 180);
+	return (angle * MPI / 180);
 }

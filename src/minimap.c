@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:16:49 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/04 22:57:45 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/09 21:30:44 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	put_map_on_img(mlx_image_t *img_map, mlx_image_t *img)
 		x = 0;
 		while (x < img_map->width)
 		{
-			memcpy(&img->pixels[(y * img->width + x) * 4], &img_map->pixels[(y * img_map->width + x) * 4], 4);
+			memcpy(&img->pixels[(y * img->width + x) * 4], \
+				&img_map->pixels[(y * img_map->width + x) * 4], 4);
 			x++;
 		}
 		y++;
@@ -75,14 +76,14 @@ void	draw_minimap(t_args *args)
 			pos.x = cell.x * args->minimap->tile_size.x;
 			pos.y = cell.y * args->minimap->tile_size.y;
 			if (args->map->grid[(int)cell.x][(int)cell.y] == '1')
-				draw_rectangle(args->minimap->img, pos, args->minimap->tile_size, grey);
+				draw_rectangle(args->minimap->img, pos, \
+					args->minimap->tile_size, grey);
 			else
-				draw_rectangle(args->minimap->img, pos, args->minimap->tile_size, dgrey);
+				draw_rectangle(args->minimap->img, pos, \
+					args->minimap->tile_size, dgrey);
 			cell.x++;
 		}
 		cell.y++;
 	}
 	draw_player_minimap(args);
 }
-
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 21:28:48 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/09 21:28:53 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/game.h"
 
 static void	put_map_on_img(mlx_image_t *img_map, mlx_image_t *img)
@@ -11,7 +23,8 @@ static void	put_map_on_img(mlx_image_t *img_map, mlx_image_t *img)
 		x = 0;
 		while (x < img_map->width)
 		{
-			memcpy(&img->pixels[(y * img->width + x) * 4], &img_map->pixels[(y * img_map->width + x) * 4], 4);
+			memcpy(&img->pixels[(y * img->width + x) * 4], \
+				&img_map->pixels[(y * img_map->width + x) * 4], 4);
 			x++;
 		}
 		y++;

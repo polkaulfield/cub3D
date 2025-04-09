@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 21:27:23 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/09 21:27:38 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/parser.h"
 
 char	**make_xy_grid(char **grid, int width, int height)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	**new_grid;
 
 	new_grid = galloc(sizeof(char *) * (width + 1));
@@ -57,30 +69,5 @@ t_map	*parser(char *file)
 	map->height = calc_height(grid);
 	map->width = calc_width(grid);
 	map->grid = make_xy_grid(grid, map->width, map->height);
-	//gfree_arr((void **)grid);
 	return (map);
 }
-/*
-//printf("check\n");
-	//printf("%s\n", map->file_name);
-	//printf("%i\n", map->fd_file);
-	int i = -1;
-	while (map->grid && map->grid[++i])
-		//printf("%s\n", map->grid[i]);
-	//printf("end map\n");
-	i = -1;
-	while (map->texture[++i])
-		//printf("%s\n", map->texture[i]);
-	//printf("%i\n", map->floor[0]);
-	//printf("%i\n", map->floor[1]);
-	//printf("%i\n", map->floor[2]);
-	//printf("%i\n", map->ceiling[0]);
-	//printf("%i\n", map->ceiling[1]);
-	//printf("%i\n", map->ceiling[2]);
-
-
-i = -1;
-	while (map->grid && map->grid[++i])
-		//printf("%s\n", map->grid[i]);
-	//printf("end map\n");
-*/

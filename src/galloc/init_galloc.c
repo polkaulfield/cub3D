@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_galloc.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 21:26:40 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/09 21:31:45 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/galloc.h"
 
 static t_galloc	*init_galloc_extend(t_galloc *l_galloc)
@@ -31,7 +43,7 @@ t_galloc	*init_galloc(void)
 	l_galloc = malloc(sizeof(t_galloc));
 	if (!l_galloc)
 	{
-		ft_putendl_fd("malloc_filed", 2);
+		ft_putendl_fd("", 2);
 		exit(EXIT_FAILURE);
 	}
 	l_galloc->next = NULL;

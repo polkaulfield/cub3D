@@ -1,43 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 21:20:40 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/09 21:34:27 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/raycasting.h"
 
-static int  get_texture_dir(t_dvector *ray_vector, t_args *args)
+static int	get_texture_dir(t_dvector *ray_vector, t_args *args)
 {
-	t_point point;
+	t_point	point;
 
-    point.x = (int)roundf(ray_vector->p2.x + DIR_CHECK_STEP);
-    point.y = (int)roundf(ray_vector->p2.y);
-    if (args->map->grid[point.x][point.y] != '1')
-        return (WE);
-    point.x = (int)roundf(ray_vector->p2.x);
-    point.y = (int)roundf(ray_vector->p2.y + DIR_CHECK_STEP);
-    if (args->map->grid[point.x][point.y] != '1')
-        return (NO);
-    point.x = (int)roundf(ray_vector->p2.x - DIR_CHECK_STEP);
-    point.y = (int)roundf(ray_vector->p2.y);
-    if (args->map->grid[point.x][point.y] != '1')
-        return (EA);
-    point.x = (int)roundf(ray_vector->p2.x);
-    point.y = (int)roundf(ray_vector->p2.y - DIR_CHECK_STEP);
-    if (args->map->grid[point.x][point.y] != '1')
-        return (SO);
-    return(NO);
+	point.x = (int)roundf(ray_vector->p2.x + DIR_CHECK_STEP);
+	point.y = (int)roundf(ray_vector->p2.y);
+	if (args->map->grid[point.x][point.y] != '1')
+		return (WE);
+	point.x = (int)roundf(ray_vector->p2.x);
+	point.y = (int)roundf(ray_vector->p2.y + DIR_CHECK_STEP);
+	if (args->map->grid[point.x][point.y] != '1')
+		return (NO);
+	point.x = (int)roundf(ray_vector->p2.x - DIR_CHECK_STEP);
+	point.y = (int)roundf(ray_vector->p2.y);
+	if (args->map->grid[point.x][point.y] != '1')
+		return (EA);
+	point.x = (int)roundf(ray_vector->p2.x);
+	point.y = (int)roundf(ray_vector->p2.y - DIR_CHECK_STEP);
+	if (args->map->grid[point.x][point.y] != '1')
+		return (SO);
+	return (NO);
 }
+
 int	calc_color(mlx_texture_t *texture, t_raycast *raycast, int y, int x)
 {
 	int		index;
 	double	scale;
 	double	depth;
+	double	pixel_divider;
 
 	depth = raycast->depth;
 	scale = (double)texture->height / (double)raycast->size.y;
 	index = (((int)(y * scale)) * texture->width + x) * 4;
-  pixel_divider = 1 + depth * depth * 0.01;
+	pixel_divider = 1 + depth * depth * 0.01;
 	if (index < 0)
 		index = 0;
-	return (get_rgba(texture->pixels[index + 0] / (1 + depth * depth * 0.01),
-			texture->pixels[index + 1] / (1 + depth * depth * 0.01),
-			texture->pixels[index + 2] / (1 + depth * depth * 0.01),
-			texture->pixels[index + 3] / (1 + depth * depth * 0.01)));
+	return (get_rgba(texture->pixels[index + 0] / pixel_divider,
+			texture->pixels[index + 1] / pixel_divider,
+			texture->pixels[index + 2] / pixel_divider,
+			texture->pixels[index + 3] / pixel_divider));
 }
 
 double	calc_x_scale(t_raycast *raycast, t_dvector ray_vector)
@@ -94,17 +108,15 @@ void	raycast_3d(t_args *args, t_point *pos, t_point *size)
 	pos->y = (args->img->height / 2) - wall_height / 2;
 	size->x = scale;
 	size->y = wall_height;
-	draw_ray_ceiling(args, raycast->pos, raycast->size);
-	draw_ray_floor(args, raycast->pos, raycast->size);
+	//draw_ray_ceiling(args, raycast->pos, raycast->size);
+	//draw_ray_floor(args, raycast->pos, raycast->size);
 	raycast->texture_dir = get_texture_dir(&raycast->ray_vector, args);
 	raycast->texture = args->texture[args->raycast.texture_dir];
 	draw_ray_texture(args, &args->raycast, raycast->ray_vector);
-	//draw_rectangle(args->img, raycast->pos, raycast->size, encode_rgb(clr, clr, clr));
 	(void)clr;
 }
 
-
-t_vector get_ray_minimap(t_dvector *ray_vector, t_args *args)
+t_vector	get_ray_minimap(t_dvector *ray_vector, t_args *args)
 {
 	t_vector	vector_minimap;
 	double		div_tile_x;
@@ -160,7 +172,7 @@ void	raycaster(t_args *args)
 			if (args->map->grid[point.x][point.y] == '1')
 			{
 				raycast_3d(args, &raycast->pos, &raycast->size);
-				draw_line(args->minimap->img, get_ray_minimap( \
+				draw_line(args->minimap->img, get_ray_minimap(\
 					&raycast->ray_vector, args), 1, encode_rgb(255, 0, 255));
 				break ;
 			}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_map_struct.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 21:27:16 by pohernan          #+#    #+#             */
+/*   Updated: 2025/04/09 21:28:02 by pohernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/parser.h"
 
 void	color_parser(char *line, t_map *map)
@@ -9,7 +21,6 @@ void	color_parser(char *line, t_map *map)
 	i = 1;
 	while (line[i] == ' ')
 		i++;
-	//printf("%s\n", line);
 	line_splited = add_galloc_arr((void **)ft_split(&line[i], ','));
 	while (line[i])
 	{
@@ -19,7 +30,6 @@ void	color_parser(char *line, t_map *map)
 	}
 	if (color_check(line) == 1)
 		number_arr = map->floor;
-	//else if (color_check(line) == 2)
 	else
 		number_arr = map->ceiling;
 	if (!line_splited[0] || !line_splited[1]

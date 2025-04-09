@@ -1,6 +1,11 @@
-CC		:= gcc
+CC		:= clang
 NAME	:= cub3d
-CFLAGS	:= -g -Wextra -Wall -Werror -Ofast -march=native -ffast-math #-fsanitize=address
+#CFLAGS	:= -Wall -Werror -Wextra -Ofast
+#CFLAGS	:= -Wextra -Wall -Werror -O3 -ffast-math -funroll-loops -funsafe-math-optimizations -ftree-vectorize -march=native -mavx2 -mfpmath=sse -fomit-frame-pointer -flto -fno-math-errno -floop-nest-optimize #-fsanitize=address
+CFLAGS	:= -Ofast -ffast-math -funsafe-math-optimizations -ftree-vectorize -ftree-slp-vectorize -march=native \
+			-mfpmath=sse -fomit-frame-pointer -flto -fno-math-errno -fno-signed-zeros -fno-rounding-math -fno-vectorize \
+			-mavx2
+
 LIBMLX	:= ./libs/MLX42
 LIBFT	:= ./libs/libft
 

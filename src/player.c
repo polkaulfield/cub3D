@@ -6,16 +6,15 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:02:01 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/04 22:31:46 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/09 21:26:16 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/player.h"
 
-int		is_grid_collision(int x, int y, t_map *map)
+int	is_grid_collision(int x, int y, t_map *map)
 {
-	if (y >= 1 &&
-		x >= 1)
+	if (y >= 1 && x >= 1)
 	{
 		if (map->grid[x][y] == '1')
 			return (1);
@@ -86,7 +85,8 @@ void	move_player(int key, t_player *player, double len, t_args *args)
 		player->angle = add_angle(player->angle, len);
 	else
 		return ;
-	if (dpoint.x != 0 && !is_grid_collision((int)roundf(dpoint.x), (int)roundf(dpoint.y), args->map))
+	if (dpoint.x != 0 && !is_grid_collision((int)roundf(dpoint.x), \
+		(int)roundf(dpoint.y), args->map))
 		player->pos = dpoint;
 }
 
