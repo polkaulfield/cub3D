@@ -59,6 +59,14 @@ typedef struct s_player
 	double	start_angle;
 }	t_player;
 
+typedef struct	s_raycast
+{
+	double		theta;
+	double		depth;
+	int			ray;
+	int			texture_dir;
+	t_dvector	ray_vector;
+}	t_raycast;
 typedef struct s_args
 {
 	mlx_t		*mlx;
@@ -71,7 +79,7 @@ typedef struct s_args
 	mlx_texture_t	*texture[4];
 	int			*ceiling;
 	int			*floor;
-	int			ray;
+	t_raycast	raycast;
 }	t_args;
 
 #endif
