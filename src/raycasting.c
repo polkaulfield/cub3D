@@ -59,9 +59,9 @@ void	draw_ray_texture(t_args *args, t_point pos, t_point size, double depth, t_d
 		while (y < size.y)
 		{
 			if (texture_direction == NO || texture_direction == SO)
-				x_2 = ray_vector.p2.x - ray_vector.p2.x * texture->width;
+				x_2 = ray_vector.p2.x - (ray_vector.p2.x + 0.5) * texture->width;
 			else
-				x_2 = ray_vector.p2.y - ray_vector.p2.y * texture->width;
+				x_2 = ray_vector.p2.y - (ray_vector.p2.y + 0.5) * texture->width;
 			if (pos.x + x < (int)args->img->width && pos.y < (int)args->img->height)
 			{
 				color = calc_color(texture, pos, size, y, x_2, depth);
