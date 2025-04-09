@@ -17,8 +17,8 @@
 # include "color.h"
 
 # include "structs.h"
-//void	draw_ray_floor(t_args *args, t_point pos, t_point size);
-//void	draw_ray_ceiling(t_args *args, t_point pos, t_point size);
+void	draw_ray_floor(t_args *args, t_point pos, t_point size);
+void	draw_ray_ceiling(t_args *args, t_point pos, t_point size);
 void	draw_ceiling(t_args *args, int color);
 void	draw_floor(t_args *args, int color);
 

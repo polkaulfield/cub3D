@@ -24,7 +24,7 @@ int	is_grid_collision(int x, int y, t_map *map)
 	return (0);
 }
 
-static double	get_angle_nsew(char direction)
+static float	get_angle_nsew(char direction)
 {
 	if (direction == 'E')
 		return (270);
@@ -51,14 +51,14 @@ t_player	*init_player(t_map *map)
 	return (player);
 }
 
-t_dpoint	get_next_pos(double h, double angle, t_dpoint pos)
+t_dpoint	get_next_pos(float h, float angle, t_dpoint pos)
 {
 	pos.y += cos(angle) * h;
 	pos.x -= sin(angle) * h;
 	return (pos);
 }
 
-double	add_angle(double angle, double increment)
+float	add_angle(float angle, float increment)
 {
 	angle += increment;
 	while (angle < 0)
@@ -68,7 +68,7 @@ double	add_angle(double angle, double increment)
 	return (angle);
 }
 
-void	move_player(int key, t_player *player, double len, t_args *args)
+void	move_player(int key, t_player *player, float len, t_args *args)
 {
 	t_dpoint	dpoint;
 

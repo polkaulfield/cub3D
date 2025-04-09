@@ -22,11 +22,11 @@ typedef struct s_params
 	mlx_image_t	*img;
 	int		tile_size;
 	t_map	*map;
-	double	fov;
-	double	half_fov;
+	float	fov;
+	float	half_fov;
 	t_player *player;
 	int		casted_rays;
-	double	max_depth;
+	float	max_depth;
 }	t_params;
 
 t_params *init_params(mlx_t *mlx, t_map *map);

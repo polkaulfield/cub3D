@@ -4,5 +4,5 @@
 
 # include "structs.h"
 
-double deg2rad(double angle);
+float deg2rad(float angle);
 #endif

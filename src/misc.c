@@ -12,7 +12,7 @@
 
 #include "../includes/misc.h"
 
-double	deg2rad(double angle)
+float	deg2rad(float angle)
 {
 	return (angle * MPI / 180);
 }

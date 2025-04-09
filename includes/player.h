@@ -10,7 +10,7 @@
 # include "structs.h"
 
 t_player	*init_player(t_map *map);
-void	move_player(int key, t_player *player, double len, t_args *args);
+void	move_player(int key, t_player *player, float len, t_args *args);
 void	render(t_args *args);
 
 #endif

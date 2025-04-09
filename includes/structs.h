@@ -8,8 +8,8 @@ typedef struct s_map
 	char	*file_name;
 	int		fd_file;
 	char	player_direction;
-	double	x_player;
-	double	y_player;
+	float	x_player;
+	float	y_player;
 	char	**grid;
 	int		height;
 	int		width;
@@ -21,8 +21,8 @@ typedef struct s_map
 
 typedef struct s_dpoint
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 }	t_dpoint;
 
 typedef struct s_point
@@ -53,16 +53,16 @@ typedef struct s_minimap
 typedef struct s_player
 {
 	t_dpoint	pos;
-	double	fov;
-	double	half_fov;
-	double	angle;
-	double	start_angle;
+	float	fov;
+	float	half_fov;
+	float	angle;
+	float	start_angle;
 }	t_player;
 
 typedef struct	s_raycast
 {
-	double		theta;
-	double		depth;
+	float		theta;
+	float		depth;
 	int			ray;
 	int			texture_dir;
 	mlx_texture_t	*texture;
@@ -77,8 +77,8 @@ typedef struct s_args
 	t_map		*map;
 	t_player	*player;
 	t_minimap	*minimap;
-	double		scale;
-	double		step_angle;
+	float		scale;
+	float		step_angle;
 	mlx_texture_t	*texture[4];
 	int			*ceiling;
 	int			*floor;

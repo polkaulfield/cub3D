@@ -23,7 +23,8 @@ int	main(int argc, char **argv)
 	t_args		*args;
 	t_map		*map;
 
-	(void)argc;
+	if (argc != 2)
+		terminate_error("Error: 2 arguments needed");
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		error();

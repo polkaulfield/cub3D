@@ -38,15 +38,17 @@ static int	get_texture_dir(t_dvector *ray_vector, t_args *args)
 int	calc_color(mlx_texture_t *texture, t_raycast *raycast, int y, int x)
 {
 	int		index;
-	double	scale;
-	double	depth;
-	double	pixel_divider;
+	float	scale;
+	float	depth;
+	float	pixel_divider;
+	int		last_pixel;
 
+	last_pixel = texture->height * texture->width * 4;
 	depth = raycast->depth;
-	scale = (double)texture->height / (double)raycast->size.y;
+	scale = (float)texture->height / (float)raycast->size.y;
 	index = (((int)(y * scale)) * texture->width + x) * 4;
 	pixel_divider = 1 + depth * depth * 0.01;
-	if (index < 0)
+	if (index < 0 || index >= last_pixel)
 		index = 0;
 	return (get_rgba(texture->pixels[index + 0] / pixel_divider,
 			texture->pixels[index + 1] / pixel_divider,
@@ -54,20 +56,18 @@ int	calc_color(mlx_texture_t *texture, t_raycast *raycast, int y, int x)
 			texture->pixels[index + 3] / pixel_divider));
 }
 
-double	calc_x_scale(t_raycast *raycast, t_dvector ray_vector)
+float	calc_x_scale(t_raycast *raycast, t_dvector ray_vector)
 {
 	if (raycast->texture_dir == NO || raycast->texture_dir == SO)
-		return (ray_vector.p2.x - (ray_vector.p2.x + 0.5)
-			* raycast->texture->width);
-	return (ray_vector.p2.y - (ray_vector.p2.y + 0.5)
-		* raycast->texture->width);
+		return ((ray_vector.p2.x - 0.5) * raycast->texture->width);
+	return ((ray_vector.p2.y - 0.5) * raycast->texture->width);
 }
 
 void	draw_ray_texture(t_args *args, t_raycast *raycast, t_dvector ray_vector)
 {
 	int		x;
 	int		y;
-	double	x_2;
+	float	x_2;
 	int		color;
 
 	x = -1;
@@ -95,35 +95,32 @@ void	draw_ray_texture(t_args *args, t_raycast *raycast, t_dvector ray_vector)
 void	raycast_3d(t_args *args, t_point *pos, t_point *size)
 {
 	t_raycast	*raycast;
-	int			clr;
 	int			wall_height;
-	double		scale;
+	float		scale;
 
 	raycast = &args->raycast;
-	scale = (double)args->img->width * 2 / CASTED_RAYS;
-	clr = 255 / (1 + raycast->depth * raycast->depth * 0.05);
+	scale = (float)args->img->width * 2 / CASTED_RAYS;
 	raycast->depth *= cos(args->player->angle - raycast->theta);
 	wall_height = roundf(args->img->width / raycast->depth);
 	pos->x = raycast->ray * scale / 2;
 	pos->y = (args->img->height / 2) - wall_height / 2;
 	size->x = scale;
 	size->y = wall_height;
-	//draw_ray_ceiling(args, raycast->pos, raycast->size);
-	//draw_ray_floor(args, raycast->pos, raycast->size);
+	draw_ray_ceiling(args, raycast->pos, raycast->size);
+	draw_ray_floor(args, raycast->pos, raycast->size);
 	raycast->texture_dir = get_texture_dir(&raycast->ray_vector, args);
 	raycast->texture = args->texture[args->raycast.texture_dir];
 	draw_ray_texture(args, &args->raycast, raycast->ray_vector);
-	(void)clr;
 }
 
 t_vector	get_ray_minimap(t_dvector *ray_vector, t_args *args)
 {
 	t_vector	vector_minimap;
-	double		div_tile_x;
-	double		div_tile_y;
+	float		div_tile_x;
+	float		div_tile_y;
 
-	div_tile_x = (double)args->minimap->tile_size.x / 2;
-	div_tile_y = (double)args->minimap->tile_size.y / 2;
+	div_tile_x = (float)args->minimap->tile_size.x / 2;
+	div_tile_y = (float)args->minimap->tile_size.y / 2;
 	vector_minimap.p1.x = (int)roundf(args->player->pos.x \
 			* args->minimap->tile_size.x + div_tile_x);
 	vector_minimap.p1.y = (int)roundf(args->player->pos.y \
@@ -157,8 +154,6 @@ void	raycaster(t_args *args)
 	t_point		point;
 	t_raycast	*raycast;
 
-	draw_ceiling(args, get_rgba(0, 0, 128, 255));
-	draw_floor(args, get_rgba(0, 128, 0, 255));
 	init_raycast(args, &args->raycast);
 	raycast = &args->raycast;
 	start_ray_vector(&raycast->ray_vector, args);

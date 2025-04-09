@@ -57,8 +57,8 @@ void	draw_rectangle(mlx_image_t *img, t_point pos, t_point size, int color)
 /*
 void	draw_circle(mlx_image_t *img, t_dpoint center, int radius, int color)
 {
-	double	dtheta;
-	double	theta;
+	float	dtheta;
+	float	theta;
 	int		n_points;
 	int		i;
 	t_dpoint	point;

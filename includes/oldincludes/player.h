@@ -17,11 +17,11 @@
 
 typedef struct s_player
 {
-	double		x;
-	double		y;
+	float		x;
+	float		y;
 	t_coords	pos;
-	double		player_angle;
-	double		step;
+	float		player_angle;
+	float		step;
 	int			color;
 	int			size;
 	mlx_image_t	*img;
