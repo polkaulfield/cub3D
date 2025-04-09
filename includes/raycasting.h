@@ -19,9 +19,9 @@
 # include "drawing.h"
 
 void	start_ray_vector(t_dvector *vector, t_args *args);
-void	end_ray_vector(t_dvector *vect, double theta, double depth);
+void	end_ray_vector(t_dvector *vect, t_raycast *raycast);
 void	get_collision_coords(t_point *point, t_dvector *ray_vector);
 
-void	draw_ray_texture(t_args *args, t_point pos, t_point size, t_dvector ray_vector);
+void	draw_ray_texture(t_args *args, t_raycast *raycast, t_dvector ray_vector);
 void	raycaster(t_args *args);
 #endif
