@@ -1,6 +1,6 @@
 CC      := clang
 NAME    := cub3d
-CFLAGS  := -Wall -Werror -Wextra #-O3 -ffast-math -pipe -march=native -flto -fsanitize=address
+CFLAGS  := -Wall -Werror -Wextra -O3 -ffast-math -pipe -march=native -flto #-fsanitize=address
 
 LIBMLX  := ./libs/MLX42
 LIBFT   := ./libs/libft
@@ -49,16 +49,16 @@ OBJS := $(SRCS:.c=.o)
 
 all: libmlx $(NAME)
 
-libmlx:
+libmlx: Makefile
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j$(nproc)
 
-libft:
+libft: Makefile
 	@make -s -C $(LIBFT)
 
 %.o: %.c $(HEADERS) Makefile
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
 
-$(NAME): libft $(OBJS)
+$(NAME): libft $(OBJS) Makefile
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
