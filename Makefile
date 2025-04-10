@@ -1,6 +1,6 @@
 CC      := clang
 NAME    := cub3d
-CFLAGS  := -Wall -Werror -Wextra -O3 -ffast-math -fsanitize=address
+CFLAGS  := -Wall -Werror -Wextra -O3 -ffast-math -pipe -march=native -flto
 
 LIBMLX  := ./libs/MLX42
 LIBFT   := ./libs/libft

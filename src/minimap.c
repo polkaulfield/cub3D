@@ -50,7 +50,7 @@ void	put_map_on_img(mlx_image_t *img_map, mlx_image_t *img)
 		x = 0;
 		while (x < img_map->width)
 		{
-			memcpy(&img->pixels[(y * img->width + x) * 4], \
+			ft_memcpy(&img->pixels[(y * img->width + x) * 4], \
 				&img_map->pixels[(y * img_map->width + x) * 4], 4);
 			x++;
 		}
