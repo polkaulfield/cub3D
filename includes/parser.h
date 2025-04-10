@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:44:19 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/10 00:44:50 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:47:09 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "structs.h"
+# include "misc.h"
 # define NO 0
 # define SO 1
 # define WE 2

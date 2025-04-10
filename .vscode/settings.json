@@ -18,6 +18,7 @@
 		"keys.h": "c",
 		"player.h": "c",
 		"raycasting.h": "c",
-		"misc.h": "c"
+		"misc.h": "c",
+		"parser.h": "c"
 	}
 }

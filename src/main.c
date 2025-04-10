@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:22:40 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/10 14:52:31 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:30:32 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(args->mlx, keys_hook, args);
 	mlx_loop(args->mlx);
 	mlx_terminate(args->mlx);
+	terminate(0);
 	return (EXIT_SUCCESS);
 }

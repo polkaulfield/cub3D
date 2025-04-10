@@ -6,7 +6,7 @@
 /*   By: pohernan <pohernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:27:16 by pohernan          #+#    #+#             */
-/*   Updated: 2025/04/09 21:28:02 by pohernan         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:47:31 by pohernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	color_parser(char *line, t_map *map)
 	if (!line_splited[0] || !line_splited[1]
 		|| !line_splited[2] || line_splited[3])
 		terminate_error("Error: Ceiling or Floor not 3 numbers found");
-	number_arr[0] = ft_atoi(add_galloc(ft_strtrim(line_splited[0], " ")));
-	number_arr[1] = ft_atoi(add_galloc(ft_strtrim(line_splited[1], " ")));
-	number_arr[2] = ft_atoi(add_galloc(ft_strtrim(line_splited[2], " ")));
+	number_arr[0] = ft_atoi(add_galloc(trim_str(line_splited[0], " ")));
+	number_arr[1] = ft_atoi(add_galloc(trim_str(line_splited[1], " ")));
+	number_arr[2] = ft_atoi(add_galloc(trim_str(line_splited[2], " ")));
 }
 
 void	texture_parser(char *line, t_map *map)
