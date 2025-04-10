@@ -18,6 +18,7 @@
 # include "parser.h"
 # include "errors.h"
 
+void	delete_texture(t_args *args);
 void	keys_hook(void *params);
 void	game_loop(void *params);
 #endif

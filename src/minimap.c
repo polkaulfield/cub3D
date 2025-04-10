@@ -17,7 +17,7 @@ t_minimap	*init_minimap(mlx_t *mlx, mlx_image_t *img, t_map *map)
 {
 	t_minimap	*minimap;
 
-	minimap = malloc(sizeof(t_minimap));
+	minimap = galloc(sizeof(t_minimap));
 	if (!minimap)
 		return (NULL);
 	minimap->size.x = img->width / 4;

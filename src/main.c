@@ -25,17 +25,18 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		terminate_error("Error: 2 arguments needed");
+	init_galloc();
+	map = parser(argv[1]);
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		error();
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	init_galloc();
-	map = parser(argv[1]);
 	args = init_args(img, mlx, map);
 	game_loop(args);
 	mlx_loop_hook(args->mlx, keys_hook, args);
 	mlx_loop(args->mlx);
 	mlx_terminate(args->mlx);
+	delete_texture(args);
 	terminate(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

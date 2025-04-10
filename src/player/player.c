@@ -29,7 +29,7 @@ t_player	*init_player(t_map *map)
 {
 	t_player	*player;
 
-	player = malloc(sizeof(t_player));
+	player = galloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
 	player->pos.x = map->x_player;

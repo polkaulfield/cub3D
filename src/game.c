@@ -65,6 +65,14 @@ int	key_checker(mlx_t *mlx)
 	return (0);
 }
 
+void	delete_texture(t_args *args)
+{
+	mlx_delete_texture(args->texture[NO]);
+	mlx_delete_texture(args->texture[SO]);
+	mlx_delete_texture(args->texture[WE]);
+	mlx_delete_texture(args->texture[EA]);
+}
+
 void	keys_hook(void *params)
 {
 	t_args	*args;
@@ -72,6 +80,7 @@ void	keys_hook(void *params)
 	args = (t_args *)params;
 	if (mlx_is_key_down(args->mlx, MLX_KEY_ESCAPE))
 	{
+		delete_texture(args);
 		mlx_close_window(args->mlx);
 		terminate(1);
 	}
