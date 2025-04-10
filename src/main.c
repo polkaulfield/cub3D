@@ -36,6 +36,5 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(args->mlx, keys_hook, args);
 	mlx_loop(args->mlx);
 	mlx_terminate(args->mlx);
-	terminate(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
